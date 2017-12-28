@@ -464,57 +464,57 @@
     }
   },
   "resources": [
-    //{
-    //  "name": "StorageAccountVirtualNetworkPublicIP",
-    //  "type": "Microsoft.Resources/deployments",
-    //  "apiVersion": "2015-01-01",
-    //  "comments": "This resource will create storage accounts for Active Directory, SQL Server, File Share Witness and Diagnostics. It will also create the Virtual Network and public IP addresses",
-    //  "properties": {
-    //    "mode": "Incremental",
-    //    "templateLink": {
-    //      "uri": "[variables('configuration').storageAccountVirtualNetworkPublicIP]",
-    //      "contentVersion": "1.0.0.0"
-    //    },
-    //    "parameters": {
-    //      "location": {
-    //        "value": "[resourceGroup().location]"
-    //      },
-    //      "sqlStorageAccountName": {
-    //        "value": "[variables('storageAccountNames').sqlStorageAccountName]"
-    //      },
-    //      "dcStorageAccountName": {
-    //        "value": "[variables('storageAccountNames').dcStorageAccountName]"
-    //      },
-    //      "SqlStorageAccountType": {
-    //        "value": "[parameters('sqlStorageAccountType')]"
-    //      },
-    //      "DcStorageAccountType": {
-    //        "value": "[parameters('dcStorageAccountType')]"
-    //      },
-    //      "primaryDCIPAddressNameWithSuffix": {
-    //        "value": "[variables('primaryDCIPAddressName')]"
-    //      },
-    //      "backupDCIPAddressNameWithSuffix": {
-    //        "value": "[variables('backupDCIPAddressName')]"
-    //      },
-    //      "sql1AddressNameWithSuffix": {
-    //        "value": "[variables('sql1AddressName')]"
-    //      },
-    //      "sql0AddressNameWithSuffix": {
-    //        "value": "[variables('sql2AddressName')]"
-    //      },
-    //      "virtualNetworkName": {
-    //        "value": "[variables('virtualNetworkName')]"
-    //      },
-    //      "virtualNetworkAddressRange": {
-    //        "value": "[parameters('virtualNetworkAddressRange')]"
-    //      },
-    //      "subnets": {
-    //        "value": "[variables('subnets')]"
-    //      }
-    //    }
-    //  }
-    //},
+    {
+      "name": "StorageAccountVirtualNetworkPublicIP",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2015-01-01",
+      "comments": "This resource will create storage accounts for Active Directory, SQL Server, File Share Witness and Diagnostics. It will also create the Virtual Network and public IP addresses",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[variables('configuration').storageAccountVirtualNetworkPublicIP]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "location": {
+            "value": "[resourceGroup().location]"
+          },
+          "sqlStorageAccountName": {
+            "value": "[variables('storageAccountNames').sqlStorageAccountName]"
+          },
+          "dcStorageAccountName": {
+            "value": "[variables('storageAccountNames').dcStorageAccountName]"
+          },
+          "SqlStorageAccountType": {
+            "value": "[parameters('sqlStorageAccountType')]"
+          },
+          "DcStorageAccountType": {
+            "value": "[parameters('dcStorageAccountType')]"
+          },
+          "primaryDCIPAddressNameWithSuffix": {
+            "value": "[variables('primaryDCIPAddressName')]"
+          },
+          "backupDCIPAddressNameWithSuffix": {
+            "value": "[variables('backupDCIPAddressName')]"
+          },
+          "sql1AddressNameWithSuffix": {
+            "value": "[variables('sql1AddressName')]"
+          },
+          "sql0AddressNameWithSuffix": {
+            "value": "[variables('sql2AddressName')]"
+          },
+          "virtualNetworkName": {
+            "value": "[variables('virtualNetworkName')]"
+          },
+          "virtualNetworkAddressRange": {
+            "value": "[parameters('virtualNetworkAddressRange')]"
+          },
+          "subnets": {
+            "value": "[variables('subnets')]"
+          }
+        }
+      }
+    }
     //{
     //  "name": "LoadBalancers",
     //  "type": "Microsoft.Resources/deployments",
