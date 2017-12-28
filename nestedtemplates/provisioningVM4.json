@@ -377,7 +377,7 @@
           "osDisk": {
             "name": "osdisk",
             "vhd": {
-              "uri": "[concat('http://',variables('sqlstorageName'),'.blob.core.windows.net/',parameters('vmContainerName'),'/',parameters('sqlVMName'), copyindex(), '-osdisk.vhd')]"
+              "uri": "[concat('http://',variables('sqlstorageName'),'.blob.core.windows.net/',parameters('vmContainerName'),'/',parameters('sqlVMName'), padleft(copyindex(1), 2, '0'), '-osdisk.vhd')]"
             },
             "caching": "ReadWrite",
             "createOption": "FromImage"
@@ -385,9 +385,9 @@
           "dataDisks": [
             {
               "vhd": {
-                "uri": "[concat('http://',variables('sqlstorageName'),'.blob.core.windows.net/',parameters('vmContainerName'),'/', parameters('sqlVMName'), copyindex(), '-Data-1.vhd')]"
+                "uri": "[concat('http://',variables('sqlstorageName'),'.blob.core.windows.net/',parameters('vmContainerName'),'/', parameters('sqlVMName'), padleft(copyindex(1), 2, '0'), '-Data-1.vhd')]"
               },
-              "name": "[concat(parameters('sqlVMName'), copyindex(),'-data-disk1')]",
+              "name": "[concat(parameters('sqlVMName'), padleft(copyindex(1), 2, '0'),'-data-disk1')]",
               "caching": "None",
               "createOption": "empty",
               "diskSizeGB": 1000,
@@ -395,9 +395,9 @@
             },
             {
               "vhd": {
-                "uri": "[concat('http://',variables('sqlstorageName'),'.blob.core.windows.net/',parameters('vmContainerName'),'/', parameters('sqlVMName'), copyindex(), '-Data-2.vhd')]"
+                "uri": "[concat('http://',variables('sqlstorageName'),'.blob.core.windows.net/',parameters('vmContainerName'),'/', parameters('sqlVMName'), padleft(copyindex(1), 2, '0'), '-Data-2.vhd')]"
               },
-              "name": "[concat(parameters('sqlVMName'), copyindex(),'-data-disk2')]",
+              "name": "[concat(parameters('sqlVMName'), padleft(copyindex(1), 2, '0'),'-data-disk2')]",
               "caching": "None",
               "createOption": "empty",
               "diskSizeGB": 1000,
@@ -405,9 +405,9 @@
             },
             {
               "vhd": {
-                "uri": "[concat('http://',variables('sqlstorageName'),'.blob.core.windows.net/',parameters('vmContainerName'),'/', parameters('sqlVMName'), copyindex(), '-Data-3.vhd')]"
+                "uri": "[concat('http://',variables('sqlstorageName'),'.blob.core.windows.net/',parameters('vmContainerName'),'/', parameters('sqlVMName'), padleft(copyindex(1), 2, '0'), '-Data-3.vhd')]"
               },
-              "name": "[concat(parameters('sqlVMName'), copyindex(),'-data-disk3')]",
+              "name": "[concat(parameters('sqlVMName'), padleft(copyindex(1), 2, '0'),'-data-disk3')]",
               "caching": "None",
               "createOption": "empty",
               "diskSizeGB": 1000,
@@ -415,9 +415,9 @@
             },
             {
               "vhd": {
-                "uri": "[concat('http://',variables('sqlstorageName'),'.blob.core.windows.net/',parameters('vmContainerName'),'/', parameters('sqlVMName'), copyindex(), '-Data-4.vhd')]"
+                "uri": "[concat('http://',variables('sqlstorageName'),'.blob.core.windows.net/',parameters('vmContainerName'),'/', parameters('sqlVMName'), padleft(copyindex(1), 2, '0'), '-Data-4.vhd')]"
               },
-              "name": "[concat(parameters('sqlVMName'), copyindex(),'-data-disk4')]",
+              "name": "[concat(parameters('sqlVMName'), padleft(copyindex(1), 2, '0'),'-data-disk4')]",
               "caching": "None",
               "createOption": "empty",
               "diskSizeGB": 1000,
@@ -428,7 +428,7 @@
         "networkProfile": {
           "networkInterfaces": [
             {
-              "id": "[resourceId(resourceGroup().name,'Microsoft.Network/networkInterfaces',concat(parameters('sqlVMName'), copyindex(),'-nic'))]"
+              "id": "[resourceId(resourceGroup().name,'Microsoft.Network/networkInterfaces',concat(parameters('sqlVMName'), padleft(copyindex(1), 2, '0'),'-nic'))]"
             }
           ]
         },
