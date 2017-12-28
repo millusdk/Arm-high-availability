@@ -390,7 +390,7 @@
     "adPDCNicName": "[concat(variables('vmSettings').adPDCVMName,'-nic')]",
     "adBDCNicName": "[concat(variables('vmSettings').adBDCVMName,'-nic')]",
     "sqlwNicName": "[concat(variables('vmSettings').sqlwVMName,'-nic')]",
-    "VnetID": "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkNameWithSuffix'))]",
+    "VnetID": "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]",
     "staticSubnetRef": "[concat(variables('VnetID'),'/subnets/',variables('subnetNames').staticSubnetName)]",
     "lanSubnetRef": "[concat(variables('VnetID'),'/subnets/',variables('subnetNames').lanSubnetName)]",
     "dmzSubnetRef": "[concat(variables('VnetID'),'/subnets/',variables('subnetNames').dmzSubnetName)]",
@@ -419,11 +419,6 @@
     "Never": false,
     "Everyday": true,
     "virtualNetworkName": "[concat(variables('baseName'), '-vnet')]",
-    "virtualNetworkNameWithSuffix": "[substring(concat(variables('virtualNetworkName'), uniqueString(variables('storageAccountNames').sqlStorageAccountName,variables('storageAccountNames').dcStorageAccountName)),0,15)]",
-    "primaryDCIPAddressNameWithSuffix": "[substring(concat(variables('primaryDCIPAddressName'), uniqueString(variables('storageAccountNames').sqlStorageAccountName,variables('storageAccountNames').dcStorageAccountName)),0,15)]",
-    "backupDCIPAddressNameWithSuffix": "[substring(concat(variables('backupDCIPAddressName'), uniqueString(variables('storageAccountNames').sqlStorageAccountName,variables('storageAccountNames').dcStorageAccountName)),0,15)]",
-    "sql1AddressNameWithSuffix": "[substring(concat(variables('sql1AddressName'), uniqueString(variables('storageAccountNames').sqlStorageAccountName,variables('storageAccountNames').dcStorageAccountName)),0,15)]",
-    "sql0AddressNameWithSuffix": "[substring(concat(variables('sql2AddressName'), uniqueString(variables('storageAccountNames').sqlStorageAccountName,variables('storageAccountNames').dcStorageAccountName)),0,15)]",
     "subnets": [
       {
         "name": "[variables('subnetNames').staticSubnetName]",
@@ -497,19 +492,19 @@
             "value": "[parameters('dcStorageAccountType')]"
           },
           "primaryDCIPAddressNameWithSuffix": {
-            "value": "[variables('primaryDCIPAddressNameWithSuffix')]"
+            "value": "[variables('primaryDCIPAddressName')]"
           },
           "backupDCIPAddressNameWithSuffix": {
-            "value": "[variables('backupDCIPAddressNameWithSuffix')]"
+            "value": "[variables('backupDCIPAddressName')]"
           },
           "sql1AddressNameWithSuffix": {
-            "value": "[variables('sql1AddressNameWithSuffix')]"
+            "value": "[variables('sql1AddressName')]"
           },
           "sql0AddressNameWithSuffix": {
-            "value": "[variables('sql0AddressNameWithSuffix')]"
+            "value": "[variables('sql2AddressName')]"
           },
           "virtualNetworkName": {
-            "value": "[variables('virtualNetworkNameWithSuffix')]"
+            "value": "[variables('virtualNetworkName')]"
           },
           "virtualNetworkAddressRange": {
             "value": "[parameters('virtualNetworkAddressRange')]"
@@ -619,21 +614,21 @@
             "value": "[variables('sqlwNicName')]"
           },
           "primaryDCIPAddressNameWithSuffix": {
-            "value": "[variables('primaryDCIPAddressNameWithSuffix')]"
+            "value": "[variables('primaryDCIPAddressName')]"
           },
           "backupDCIPAddressNameWithSuffix": {
-            "value": "[variables('backupDCIPAddressNameWithSuffix')]"
+            "value": "[variables('backupDCIPAddressName')]"
           },
           "sql1AddressNameWithSuffix": {
-            "value": "[variables('sql1AddressNameWithSuffix')]"
+            "value": "[variables('sql1AddressName')]"
           },
           "sql0AddressNameWithSuffix": {
-            "value": "[variables('sql0AddressNameWithSuffix')]"
+            "value": "[variables('sql2AddressName')]"
           }
         }
       }
     }
-    
+
     //{
     //  "name": "ProvisioningVMs",
     //  "type": "Microsoft.Resources/deployments",
@@ -759,7 +754,7 @@
     //        "value": "[resourceGroup().location]"
     //      },
     //      "virtualNetworkName": {
-    //        "value": "[variables('virtualNetworkNameWithSuffix')]"
+    //        "value": "[variables('virtualNetworkName')]"
     //      },
     //      "virtualNetworkAddressRange": {
     //        "value": "[parameters('virtualNetworkAddressRange')]"
@@ -831,7 +826,7 @@
     //        "value": "[resourceGroup().location]"
     //      },
     //      "virtualNetworkName": {
-    //        "value": "[variables('virtualNetworkNameWithSuffix')]"
+    //        "value": "[variables('virtualNetworkName')]"
     //      },
     //      "virtualNetworkAddressRange": {
     //        "value": "[parameters('virtualNetworkAddressRange')]"
@@ -920,7 +915,7 @@
     //                "id": "[variables('sqlSubnetRef')]"
     //              },
     //              "publicIpAddress": {
-    //                "id": "[resourceId(resourceGroup().Name,'Microsoft.Network/publicIpAddresses', variables('sql0AddressNameWithSuffix'))]"
+    //                "id": "[resourceId(resourceGroup().Name,'Microsoft.Network/publicIpAddresses', variables('sql2AddressName'))]"
     //              },
     //              "loadBalancerBackendAddressPools": [
     //                {
@@ -970,7 +965,7 @@
     //                "id": "[variables('sqlSubnetRef')]"
     //              },
     //              "publicIpAddress": {
-    //                "id": "[resourceId(resourceGroup().Name,'Microsoft.Network/publicIpAddresses', variables('sql1AddressNameWithSuffix'))]"
+    //                "id": "[resourceId(resourceGroup().Name,'Microsoft.Network/publicIpAddresses', variables('sql1AddressName'))]"
     //              },
     //              "loadBalancerBackendAddressPools": [
     //                {
