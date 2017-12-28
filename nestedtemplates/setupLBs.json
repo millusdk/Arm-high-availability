@@ -114,59 +114,59 @@
         ]
       }
     },
-    {
-      "apiVersion": "2015-06-15",
-      "name": "[parameters('webLBName')]",
-      "type": "Microsoft.Network/loadBalancers",
-      "location": "[parameters('location')]",
-      "properties": {
-        "frontendIPConfigurations": [
-          {
-            "name": "[parameters('webLBFE')]",
-            "properties": {
-              "publicIPAddress": {
-                "id": "[parameters('webLbIp')]"
-              }
-            }
-          }
-        ],
-        "backendAddressPools": [
-          {
-            "name": "[parameters('webLBBE')]"
-          }
-        ],
-        "loadBalancingRules": [
-          {
-            "name": "webAlwaysOnEndPointListener",
-            "properties": {
-              "backendAddressPool": {
-                "id": "[parameters('webLBBEID')]"
-              },
-              "frontendIPConfiguration": {
-                "id": "[parameters('weblbFEConfigID')]"
-              },
-              "probe": {
-                "id": "[parameters('weblbProbeID')]"
-              },
-              "protocol": "tcp",
-              "frontendPort": 80,
-              "backendPort": 80,
-              "enableFloatingIP": true
-            }
-          }
-        ],
-        "probes": [
-          {
-            "name": "[parameters('webProbe')]",
-            "properties": {
-              "protocol": "tcp",
-              "port": 80,
-              "intervalInSeconds": "5",
-              "numberOfProbes": "2"
-            }
-          }
-        ]
-      }
-    }
+    //{
+    //  "apiVersion": "2015-06-15",
+    //  "name": "[parameters('webLBName')]",
+    //  "type": "Microsoft.Network/loadBalancers",
+    //  "location": "[parameters('location')]",
+    //  "properties": {
+    //    "frontendIPConfigurations": [
+    //      {
+    //        "name": "[parameters('webLBFE')]",
+    //        "properties": {
+    //          "publicIPAddress": {
+    //            "id": "[parameters('webLbIp')]"
+    //          }
+    //        }
+    //      }
+    //    ],
+    //    "backendAddressPools": [
+    //      {
+    //        "name": "[parameters('webLBBE')]"
+    //      }
+    //    ],
+    //    "loadBalancingRules": [
+    //      {
+    //        "name": "webAlwaysOnEndPointListener",
+    //        "properties": {
+    //          "backendAddressPool": {
+    //            "id": "[parameters('webLBBEID')]"
+    //          },
+    //          "frontendIPConfiguration": {
+    //            "id": "[parameters('weblbFEConfigID')]"
+    //          },
+    //          "probe": {
+    //            "id": "[parameters('weblbProbeID')]"
+    //          },
+    //          "protocol": "tcp",
+    //          "frontendPort": 80,
+    //          "backendPort": 80,
+    //          "enableFloatingIP": true
+    //        }
+    //      }
+    //    ],
+    //    "probes": [
+    //      {
+    //        "name": "[parameters('webProbe')]",
+    //        "properties": {
+    //          "protocol": "tcp",
+    //          "port": 80,
+    //          "intervalInSeconds": "5",
+    //          "numberOfProbes": "2"
+    //        }
+    //      }
+    //    ]
+    //  }
+    //}
   ]
 }
