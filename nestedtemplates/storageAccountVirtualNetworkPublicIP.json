@@ -11,6 +11,9 @@
     "dcStorageAccountName": {
       "type": "string"
     },
+    "diagStorageAccountName": {
+      "type": "string"
+    },
     "location": {
       "type": "string"
     },
@@ -75,7 +78,7 @@
     },
     {
       "type": "Microsoft.Storage/storageAccounts",
-      "name": "[concat(uniquestring(parameters('sqlStorageAccountName')), 'diag')]",
+      "name": "[parameters('diagStorageAccountName')]",
       "apiVersion": "2015-05-01-preview",
       "location": "[parameters('location')]",
       "properties": {

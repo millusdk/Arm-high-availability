@@ -53,6 +53,9 @@
     "dcStorageAccountName": {
       "type": "string"
     },
+    "diagStorageAccountName": {
+      "type": "string"
+    },
     "fwstorageName": {
       "type": "string"
     },
@@ -99,7 +102,7 @@
   "variables": {
     "sqlstorageName": "[parameters('sqlStorageAccountName')]",
     "dcstorageName": "[parameters('dcStorageAccountName')]",
-    "diagstorageName": "[concat(uniquestring(parameters('sqlStorageAccountName')), 'diag')]"
+    "diagstorageName": "[parameters('diagStorageAccountName')]"
   },
   "resources": [
     {

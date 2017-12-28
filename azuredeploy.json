@@ -366,7 +366,8 @@
       "dcStorageAccountName": "[replace(concat(variables('baseName'), 'storagedc'), '-', '')]",
       "sqlStorageAccountName": "[replace(concat(variables('baseName'), 'storagesql'),'-', '')]",
       "fswStorageAccountName": "[replace(concat(variables('baseName'), 'storagefsw'),'-', '')]",
-      "webStorageAccountName": "[replace(concat(variables('baseName'), 'storageweb'),'-', '')]"
+      "webStorageAccountName": "[replace(concat(variables('baseName'), 'storageweb'),'-', '')]",
+      "diagStorageAccountName": "[replace(concat(variables('baseName'), 'storagediag'),'-', '')]"
     },
     "vmSettings": {
       "availabilitySets": {
@@ -696,6 +697,9 @@
           },
           "dcStorageAccountName": {
             "value": "[variables('storageAccountNames').dcStorageAccountName]"
+          },
+          "diagStorageAccountName": {
+            "value": "[variables('storageAccountNames').diagStorageAccountName]"
           },
           "fwstorageName": {
             "value": "[variables('storageAccountNames').fswStorageAccountName]"
