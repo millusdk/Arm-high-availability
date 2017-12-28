@@ -345,7 +345,9 @@
       "sqlLBBE": "sqlLBBE",
       "rdpLBName": "[concat(variables('baseName'), '-loadbalancer-rdp')]",
       "sqlLBName": "[concat(variables('baseName'), '-loadbalancer-sql')]",
-      "webLBName": "[concat(variables('baseName'), '-loadbalancer-web')]"
+      "webLBName": "[concat(variables('baseName'), '-loadbalancer-web')]",
+      "webLBFE": "webLBFE",
+      "webLBBE": "webLBBE"
     },
     "subnetNames": {
       "staticSubnetName": "staticSubnet",
@@ -354,13 +356,16 @@
     },
     "RDPNAT": "RDP",
     "SQLAOProbe": "SQLAlwaysOnEndPointProbe",
+    "WebProbe": "WebEndPointProbe",
     "primaryDCIPAddressName": "[concat(variables('baseName'), '-ip-primaryDc')]",
     "backupDCIPAddressName": "[concat(variables('baseName'), '-ip-backupDc')]",
     "sql1AddressName": "[concat(variables('baseName'), '-ip-sql01')]",
     "sql2AddressName": "[concat(variables('baseName'), '-ip-sql02')]",
+    "webAddressName": "[concat(variables('baseName'), '-ip-web')]",
     "storageAccountNames": {
       "dcStorageAccountName": "[replace(concat(variables('baseName'), 'storagedc'), '-', '')]",
       "sqlStorageAccountName": "[replace(concat(variables('baseName'), 'storagesql'),'-', '')]",
+      "fswStorageAccountName": "[replace(concat(variables('baseName'), 'storagefsw'),'-', '')]",
       "webStorageAccountName": "[replace(concat(variables('baseName'), 'storageweb'),'-', '')]"
     },
     "vmSettings": {
@@ -407,7 +412,11 @@
       "adBEAddressPoolID": "[concat(variables('ids').rdplbID,'/backendAddressPools/',variables('lbSettings').adLBBE)]",
       "sqlBEAddressPoolID": "[concat(variables('ids').sqllbID,'/backendAddressPools/',variables('lbSettings').sqlLBBE)]",
       "sqllbFEConfigID": "[concat(variables('ids').sqllbID,'/frontendIPConfigurations/',variables('lbSettings').sqlLBFE)]",
-      "sqllbProbeID": "[concat(variables('ids').sqllbID,'/probes/',variables('SQLAOProbe'))]"
+      "sqllbProbeID": "[concat(variables('ids').sqllbID,'/probes/',variables('SQLAOProbe'))]",
+      "webBEAddressPoolID": "[concat(variables('ids').sqllbID,'/backendAddressPools/',variables('lbSettings').webLBBE)]",
+      "weblbFEConfigID": "[concat(variables('ids').sqllbID,'/frontendIPConfigurations/',variables('lbSettings').webLBFE)]",
+      "weblbProbeID": "[concat(variables('ids').sqllbID,'/probes/',variables('webProbe'))]",
+      "webLBIp": "[[resourceId(resourceGroup().Name,'Microsoft.Network/publicIpAddresses', variables('webAddressName'))]]"
     },
     "Monday": true,
     "Tuesday": true,
@@ -482,6 +491,9 @@
           "sqlStorageAccountName": {
             "value": "[variables('storageAccountNames').sqlStorageAccountName]"
           },
+          "fswStorageAccountName": {
+            "value": "[variables('storageAccountNames').fswStorageAccountName]"
+          },
           "dcStorageAccountName": {
             "value": "[variables('storageAccountNames').dcStorageAccountName]"
           },
@@ -502,6 +514,9 @@
           },
           "sql0AddressNameWithSuffix": {
             "value": "[variables('sql2AddressName')]"
+          },
+          "webAddressNameWithSuffix": {
+            "value": "[variables('webAddressName')]"
           },
           "virtualNetworkName": {
             "value": "[variables('virtualNetworkName')]"
@@ -533,6 +548,9 @@
           "location": {
             "value": "[resourceGroup().location]"
           },
+          "staticSubnetRef": {
+            "value": "[variables('lanSubnetRef')]"
+          },
           "sqlLBName": {
             "value": "[variables('lbSettings').sqlLBName]"
           },
@@ -541,9 +559,6 @@
           },
           "sqlLBIPAddress": {
             "value": "[parameters('sqlLBIPAddress')]"
-          },
-          "staticSubnetRef": {
-            "value": "[variables('lanSubnetRef')]"
           },
           "sqlLBBE": {
             "value": "[variables('lbSettings').sqlLBBE]"
@@ -559,6 +574,30 @@
           },
           "SQLAOProbe": {
             "value": "[variables('SQLAOProbe')]"
+          },
+          "webLBName": {
+            "value": "[variables('lbSettings').webLBName]"
+          },
+          "webLBIp": {
+            "value": "[variables('derivedIds').webLBIp]"
+          },
+          "webLBFE": {
+            "value": "[variables('lbSettings').webLBFE]"
+          },
+          "webLBBE": {
+            "value": "[variables('lbSettings').webLBBE]"
+          },
+          "webLBBEID": {
+            "value": "[variables('derivedIds').webBEAddressPoolID]"
+          },
+          "weblbFEConfigID": {
+            "value": "[variables('derivedIds').weblbFEConfigID]"
+          },
+          "weblbProbeID": {
+            "value": "[variables('derivedIds').weblbProbeID]"
+          },
+          "webProbe": {
+            "value": "[variables('webProbe')]"
           }
         }
       }
