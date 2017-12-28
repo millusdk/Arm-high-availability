@@ -359,9 +359,9 @@
     "sql1AddressName": "[concat(variables('baseName'), '-ip-sql01')]",
     "sql2AddressName": "[concat(variables('baseName'), '-ip-sql02')]",
     "storageAccountNames": {
-      "dcStorageAccountName": "[concat(variables('baseName'), 'storagedc')]",
-      "sqlStorageAccountName": "[concat(variables('baseName'), 'storagesql')]",
-      "webStorageAccountName": "[concat(variables('baseName'), 'storageweb')]"
+      "dcStorageAccountName": "[replace(concat(variables('baseName'), 'storagedc'), '-', '')]",
+      "sqlStorageAccountName": "[replace(concat(variables('baseName'), 'storagesql'),'-', '')]",
+      "webStorageAccountName": "[replace(concat(variables('baseName'), 'storageweb'),'-', '')]"
     },
     "vmSettings": {
       "availabilitySets": {
