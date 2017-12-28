@@ -359,8 +359,8 @@
     "WebProbe": "WebEndPointProbe",
     "primaryDCIPAddressName": "[concat(variables('baseName'), '-ip-primaryDc')]",
     "backupDCIPAddressName": "[concat(variables('baseName'), '-ip-backupDc')]",
-    "sql1AddressName": "[concat(variables('baseName'), '-ip-sql01')]",
-    "sql2AddressName": "[concat(variables('baseName'), '-ip-sql02')]",
+    "sql1AddressName": "[concat(variables('baseName'), '-ip-sql21')]",
+    "sql2AddressName": "[concat(variables('baseName'), '-ip-sql22')]",
     "webAddressName": "[concat(variables('baseName'), '-ip-web')]",
     "storageAccountNames": {
       "dcStorageAccountName": "[replace(concat(variables('baseName'), 'storagedc'), '-', '')]",
@@ -512,7 +512,7 @@
           "sql1AddressNameWithSuffix": {
             "value": "[variables('sql1AddressName')]"
           },
-          "sql0AddressNameWithSuffix": {
+          "sql2AddressNameWithSuffix": {
             "value": "[variables('sql2AddressName')]"
           },
           "webAddressNameWithSuffix": {
@@ -661,7 +661,7 @@
           "sql1AddressNameWithSuffix": {
             "value": "[variables('sql1AddressName')]"
           },
-          "sql0AddressNameWithSuffix": {
+          "sql2AddressNameWithSuffix": {
             "value": "[variables('sql2AddressName')]"
           }
         }
@@ -928,7 +928,7 @@
     //  }
     //},
     //{
-    //  "name": "UpdatingSQL0Nic",
+    //  "name": "Updatingsql2Nic",
     //  "type": "Microsoft.Resources/deployments",
     //  "apiVersion": "2015-01-01",
     //  "dependsOn": [
@@ -945,7 +945,7 @@
     //        "value": "[resourceGroup().location]"
     //      },
     //      "nicName": {
-    //        "value": "[concat(variables('vmSettings').sqlVMName, '0-nic')]"
+    //        "value": "[concat(variables('vmSettings').sqlVMName, '02-nic')]"
     //      },
     //      "ipConfigurations": {
     //        "value": [
@@ -982,7 +982,7 @@
     //  "type": "Microsoft.Resources/deployments",
     //  "apiVersion": "2015-01-01",
     //  "dependsOn": [
-    //    "Microsoft.Resources/deployments/UpdatingSQL0Nic"
+    //    "Microsoft.Resources/deployments/Updatingsql2Nic"
     //  ],
     //  "properties": {
     //    "mode": "Incremental",
@@ -995,7 +995,7 @@
     //        "value": "[resourceGroup().location]"
     //      },
     //      "nicName": {
-    //        "value": "[concat(variables('vmSettings').sqlVMName, '1-nic')]"
+    //        "value": "[concat(variables('vmSettings').sqlVMName, '01-nic')]"
     //      },
     //      "ipConfigurations": {
     //        "value": [
@@ -1032,7 +1032,7 @@
     //  "type": "Microsoft.Resources/deployments",
     //  "apiVersion": "2015-01-01",
     //  "dependsOn": [
-    //    "Microsoft.Resources/deployments/UpdatingSQL0Nic"
+    //    "Microsoft.Resources/deployments/Updatingsql2Nic"
     //  ],
     //  "properties": {
     //    "mode": "Incremental",

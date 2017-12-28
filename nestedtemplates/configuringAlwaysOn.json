@@ -69,7 +69,7 @@
    "resources":[  
       {  
          "type":"Microsoft.Compute/virtualMachines/extensions",
-         "name":"[concat(parameters('sqlVMName'),'1/configuringAlwaysOn')]",
+         "name":"[concat(parameters('sqlVMName'),'02/configuringAlwaysOn')]",
          "apiVersion":"2015-06-15",
          "location":"[parameters('location')]",
          "properties":{  
@@ -85,8 +85,8 @@
                   "clusterName":"[parameters('clusterName')]",
                   "sharePath":"[concat('\\\\',parameters('sqlwVMName'),'\\',parameters('sharePath'))]",
                   "nodes":[  
-                     "[concat(parameters('sqlVMName'),'0')]",
-                     "[concat(parameters('sqlVMName'),'1')]"
+                     "[concat(parameters('sqlVMName'),'01')]",
+                     "[concat(parameters('sqlVMName'),'02')]"
                   ],
                   "sqlAlwaysOnEndpointName":"[parameters('sqlAOEPName')]",
                   "sqlAlwaysOnAvailabilityGroupName":"[parameters('sqlAOAGName')]",
@@ -95,8 +95,8 @@
                   "databaseNames":"AutoHa-sample",
                   "lbName":"[parameters('sqlLBName')]",
                   "lbAddress":"[parameters('sqlLBIPAddress')]",
-                  "primaryReplica":"[concat(parameters('sqlVMName'),'1')]",
-                  "secondaryReplica":"[concat(parameters('sqlVMName'),'0')]",
+                  "primaryReplica":"[concat(parameters('sqlVMName'),'01')]",
+                  "secondaryReplica":"[concat(parameters('sqlVMName'),'02')]",
                   "dnsServerName":"[parameters('adPDCVMName')]",
                   "adminCreds":{  
                      "userName":"[parameters('adminUsername')]",

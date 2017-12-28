@@ -38,7 +38,7 @@
     "sql1AddressNameWithSuffix": {
       "type": "string"
     },
-    "sql0AddressNameWithSuffix": {
+    "sql2AddressNameWithSuffix": {
       "type": "string"
     },
     "webAddressNameWithSuffix": {
@@ -112,7 +112,7 @@
     {
       "apiVersion": "2015-06-15",
       "type": "Microsoft.Network/publicIPAddresses",
-      "name": "[parameters('sql0AddressNameWithSuffix')]",
+      "name": "[parameters('sql2AddressNameWithSuffix')]",
       "location": "[parameters('location')]",
       "properties": {
         "publicIPAllocationMethod": "dynamic"

@@ -47,7 +47,7 @@
     "sql1AddressNameWithSuffix": {
       "type": "string"
     },
-    "sql0AddressNameWithSuffix": {
+    "sql2AddressNameWithSuffix": {
       "type": "string"
     }
   },
@@ -99,7 +99,7 @@
       }
     },
     {
-      "name": "[concat(parameters('sqlVMName'),'1-nic')]",
+      "name": "[concat(parameters('sqlVMName'),'01-nic')]",
       "type": "Microsoft.Network/networkInterfaces",
       "location": "[parameters('location')]",
       "apiVersion": "2015-06-15",
@@ -126,7 +126,7 @@
       }
     },
     {
-      "name": "[concat(parameters('sqlVMName'),'0-nic')]",
+      "name": "[concat(parameters('sqlVMName'),'02-nic')]",
       "type": "Microsoft.Network/networkInterfaces",
       "location": "[parameters('location')]",
       "apiVersion": "2015-06-15",
@@ -140,7 +140,7 @@
                 "id": "[parameters('sqlSubnetRef')]"
               },
               "publicIpAddress": {
-                "id": "[resourceId(resourceGroup().Name,'Microsoft.Network/publicIpAddresses', parameters('sql0AddressNameWithSuffix'))]"
+                "id": "[resourceId(resourceGroup().Name,'Microsoft.Network/publicIpAddresses', parameters('sql2AddressNameWithSuffix'))]"
               },
               "loadBalancerBackendAddressPools": [
                 {

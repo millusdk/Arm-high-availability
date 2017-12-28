@@ -343,7 +343,7 @@
     {
       "apiVersion": "2015-06-15",
       "type": "Microsoft.Compute/virtualMachines",
-      "name": "[concat(parameters('sqlVMName'), copyindex())]",
+      "name": "[concat(parameters('sqlVMName'), padleft(copyindex(1), 2, '0'))]",
       "location": "[parameters('location')]",
       "dependsOn": [
         "[concat('Microsoft.Compute/availabilitySets/',parameters('sqlAvailabilitySetName'))]"
@@ -360,7 +360,7 @@
           "id": "[resourceId('Microsoft.Compute/availabilitySets',parameters('sqlAvailabilitySetName'))]"
         },
         "osProfile": {
-          "computerName": "[concat(parameters('sqlVMName'), copyindex())]",
+          "computerName": "[concat(parameters('sqlVMName'), padleft(copyindex(1), 2, '0'))]",
           "adminUsername": "[parameters('adminUsername')]",
           "adminPassword": "[parameters('adminPassword')]"
         },
