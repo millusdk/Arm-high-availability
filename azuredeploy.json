@@ -514,55 +514,55 @@
           }
         }
       }
+    },
+    {
+      "name": "LoadBalancers",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2015-01-01",
+      "comments": "Create Load Balancers for SQL and DC",
+      "dependsOn": [
+        "Microsoft.Resources/deployments/StorageAccountVirtualNetworkPublicIP"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[variables('configuration').setupLBsUrl]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "location": {
+            "value": "[resourceGroup().location]"
+          },
+          "sqlLBName": {
+            "value": "[variables('lbSettings').sqlLBName]"
+          },
+          "sqlLBFE": {
+            "value": "[variables('lbSettings').sqlLBFE]"
+          },
+          "sqlLBIPAddress": {
+            "value": "[parameters('sqlLBIPAddress')]"
+          },
+          "staticSubnetRef": {
+            "value": "[variables('lanSubnetRef')]"
+          },
+          "sqlLBBE": {
+            "value": "[variables('lbSettings').sqlLBBE]"
+          },
+          "sqlLBBEID": {
+            "value": "[variables('derivedIds').sqlBEAddressPoolID]"
+          },
+          "sqllbFEConfigID": {
+            "value": "[variables('derivedIds').sqllbFEConfigID]"
+          },
+          "sqllbProbeID": {
+            "value": "[variables('derivedIds').sqllbProbeID]"
+          },
+          "SQLAOProbe": {
+            "value": "[variables('SQLAOProbe')]"
+          }
+        }
+      }
     }
-    //{
-    //  "name": "LoadBalancers",
-    //  "type": "Microsoft.Resources/deployments",
-    //  "apiVersion": "2015-01-01",
-    //  "comments": "Create Load Balancers for SQL and DC",
-    //  "dependsOn": [
-    //    "Microsoft.Resources/deployments/StorageAccountVirtualNetworkPublicIP"
-    //  ],
-    //  "properties": {
-    //    "mode": "Incremental",
-    //    "templateLink": {
-    //      "uri": "[variables('configuration').setupLBsUrl]",
-    //      "contentVersion": "1.0.0.0"
-    //    },
-    //    "parameters": {
-    //      "location": {
-    //        "value": "[resourceGroup().location]"
-    //      },
-    //      "sqlLBName": {
-    //        "value": "[variables('lbSettings').sqlLBName]"
-    //      },
-    //      "sqlLBFE": {
-    //        "value": "[variables('lbSettings').sqlLBFE]"
-    //      },
-    //      "sqlLBIPAddress": {
-    //        "value": "[parameters('sqlLBIPAddress')]"
-    //      },
-    //      "staticSubnetRef": {
-    //        "value": "[variables('lanSubnetRef')]"
-    //      },
-    //      "sqlLBBE": {
-    //        "value": "[variables('lbSettings').sqlLBBE]"
-    //      },
-    //      "sqlLBBEID": {
-    //        "value": "[variables('derivedIds').sqlBEAddressPoolID]"
-    //      },
-    //      "sqllbFEConfigID": {
-    //        "value": "[variables('derivedIds').sqllbFEConfigID]"
-    //      },
-    //      "sqllbProbeID": {
-    //        "value": "[variables('derivedIds').sqllbProbeID]"
-    //      },
-    //      "SQLAOProbe": {
-    //        "value": "[variables('SQLAOProbe')]"
-    //      }
-    //    }
-    //  }
-    //},
     //{
     //  "name": "CreatingNetworkInterfaces",
     //  "type": "Microsoft.Resources/deployments",
