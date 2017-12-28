@@ -415,11 +415,11 @@
     "Never": false,
     "Everyday": true,
     "virtualNetworkName": "[concat(variables('baseName'), '-vnet')]",
-    "virtualNetworkNameWithSuffix": "[substring(concat(variables('virtualNetworkName'), uniqueString(variables('storageAccountNames').sqlStorageAccountName,variables('storageAccountNames').scStorageAccountName)),0,15)]",
-    "primaryDCIPAddressNameWithSuffix": "[substring(concat(variables('primaryDCIPAddressName'), uniqueString(variables('storageAccountNames').sqlStorageAccountName,variables('storageAccountNames').scStorageAccountName)),0,15)]",
-    "backupDCIPAddressNameWithSuffix": "[substring(concat(variables('backupDCIPAddressName'), uniqueString(variables('storageAccountNames').sqlStorageAccountName,variables('storageAccountNames').scStorageAccountName)),0,15)]",
-    "sql1AddressNameWithSuffix": "[substring(concat(variables('sql1AddressName'), uniqueString(variables('storageAccountNames').sqlStorageAccountName,variables('storageAccountNames').scStorageAccountName)),0,15)]",
-    "sql0AddressNameWithSuffix": "[substring(concat(variables('sql2AddressName'), uniqueString(variables('storageAccountNames').sqlStorageAccountName,variables('storageAccountNames').scStorageAccountName)),0,15)]",
+    "virtualNetworkNameWithSuffix": "[substring(concat(variables('virtualNetworkName'), uniqueString(variables('storageAccountNames').sqlStorageAccountName,variables('storageAccountNames').dcStorageAccountName)),0,15)]",
+    "primaryDCIPAddressNameWithSuffix": "[substring(concat(variables('primaryDCIPAddressName'), uniqueString(variables('storageAccountNames').sqlStorageAccountName,variables('storageAccountNames').dcStorageAccountName)),0,15)]",
+    "backupDCIPAddressNameWithSuffix": "[substring(concat(variables('backupDCIPAddressName'), uniqueString(variables('storageAccountNames').sqlStorageAccountName,variables('storageAccountNames').dcStorageAccountName)),0,15)]",
+    "sql1AddressNameWithSuffix": "[substring(concat(variables('sql1AddressName'), uniqueString(variables('storageAccountNames').sqlStorageAccountName,variables('storageAccountNames').dcStorageAccountName)),0,15)]",
+    "sql0AddressNameWithSuffix": "[substring(concat(variables('sql2AddressName'), uniqueString(variables('storageAccountNames').sqlStorageAccountName,variables('storageAccountNames').dcStorageAccountName)),0,15)]",
     "subnets": [
       {
         "name": "[variables('subnetNames').staticSubnetName]",
