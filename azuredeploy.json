@@ -379,7 +379,7 @@
       "adPDCVMName": "[concat(variables('baseName'), '-dc01')]",
       "adBDCVMName": "[concat(variables('baseName'), '-dc02')]",
       "sqlVMName": "[concat(variables('baseName'), '-sql')]",
-      "sqlwVMName": "[concat(variables('baseName'), '-cluster-fsw')]",
+      "sqlwVMName": "[concat(variables('baseName'), '-fsw')]",
       "windowsImagePublisher": "MicrosoftWindowsServer",
       "windowsImageOffer": "WindowsServer",
       "windowsImageSKU": "2016-Datacenter",
