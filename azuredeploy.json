@@ -339,6 +339,10 @@
   "variables": {
     "baseName": "[toLower(concat('aha', substring(resourceGroup().name, lastIndexOf(resourceGroup().name, '-'))))]",
     "lbSettings": {
+      "rdpLBFE": "rdpLBFE",
+      "sqlLBFE": "sqlLBFE",
+      "adLBBE": "adLBBE",
+      "sqlLBBE": "sqlLBBE",
       "rdpLBName": "[concat(variables('baseName'), '-loadbalancer-rdp')]",
       "sqlLBName": "[concat(variables('baseName'), '-loadbalancer-sql')]",
       "webLBName": "[concat(variables('baseName'), '-loadbalancer-web')]"
