@@ -464,170 +464,170 @@
     }
   },
   "resources": [
-    {
-      "name": "StorageAccountVirtualNetworkPublicIP",
-      "type": "Microsoft.Resources/deployments",
-      "apiVersion": "2015-01-01",
-      "comments": "This resource will create storage accounts for Active Directory, SQL Server, File Share Witness and Diagnostics. It will also create the Virtual Network and public IP addresses",
-      "properties": {
-        "mode": "Incremental",
-        "templateLink": {
-          "uri": "[variables('configuration').storageAccountVirtualNetworkPublicIP]",
-          "contentVersion": "1.0.0.0"
-        },
-        "parameters": {
-          "location": {
-            "value": "[resourceGroup().location]"
-          },
-          "sqlStorageAccountName": {
-            "value": "[variables('storageAccountNames').sqlStorageAccountName]"
-          },
-          "dcStorageAccountName": {
-            "value": "[variables('storageAccountNames').dcStorageAccountName]"
-          },
-          "SqlStorageAccountType": {
-            "value": "[parameters('sqlStorageAccountType')]"
-          },
-          "DcStorageAccountType": {
-            "value": "[parameters('dcStorageAccountType')]"
-          },
-          "primaryDCIPAddressNameWithSuffix": {
-            "value": "[variables('primaryDCIPAddressName')]"
-          },
-          "backupDCIPAddressNameWithSuffix": {
-            "value": "[variables('backupDCIPAddressName')]"
-          },
-          "sql1AddressNameWithSuffix": {
-            "value": "[variables('sql1AddressName')]"
-          },
-          "sql0AddressNameWithSuffix": {
-            "value": "[variables('sql2AddressName')]"
-          },
-          "virtualNetworkName": {
-            "value": "[variables('virtualNetworkName')]"
-          },
-          "virtualNetworkAddressRange": {
-            "value": "[parameters('virtualNetworkAddressRange')]"
-          },
-          "subnets": {
-            "value": "[variables('subnets')]"
-          }
-        }
-      }
-    },
-    {
-      "name": "LoadBalancers",
-      "type": "Microsoft.Resources/deployments",
-      "apiVersion": "2015-01-01",
-      "comments": "Create Load Balancers for SQL and DC",
-      "dependsOn": [
-        "Microsoft.Resources/deployments/StorageAccountVirtualNetworkPublicIP"
-      ],
-      "properties": {
-        "mode": "Incremental",
-        "templateLink": {
-          "uri": "[variables('configuration').setupLBsUrl]",
-          "contentVersion": "1.0.0.0"
-        },
-        "parameters": {
-          "location": {
-            "value": "[resourceGroup().location]"
-          },
-          "sqlLBName": {
-            "value": "[variables('lbSettings').sqlLBName]"
-          },
-          "sqlLBFE": {
-            "value": "[variables('lbSettings').sqlLBFE]"
-          },
-          "sqlLBIPAddress": {
-            "value": "[parameters('sqlLBIPAddress')]"
-          },
-          "staticSubnetRef": {
-            "value": "[variables('lanSubnetRef')]"
-          },
-          "sqlLBBE": {
-            "value": "[variables('lbSettings').sqlLBBE]"
-          },
-          "sqlLBBEID": {
-            "value": "[variables('derivedIds').sqlBEAddressPoolID]"
-          },
-          "sqllbFEConfigID": {
-            "value": "[variables('derivedIds').sqllbFEConfigID]"
-          },
-          "sqllbProbeID": {
-            "value": "[variables('derivedIds').sqllbProbeID]"
-          },
-          "SQLAOProbe": {
-            "value": "[variables('SQLAOProbe')]"
-          }
-        }
-      }
-    },
-    {
-      "name": "CreatingNetworkInterfaces",
-      "type": "Microsoft.Resources/deployments",
-      "apiVersion": "2015-01-01",
-      "dependsOn": [
-        "Microsoft.Resources/deployments/LoadBalancers"
-      ],
-      "properties": {
-        "mode": "Incremental",
-        "templateLink": {
-          "uri": "[variables('configuration').creatingNicsUrl]",
-          "contentVersion": "1.0.0.0"
-        },
-        "parameters": {
-          "location": {
-            "value": "[resourceGroup().location]"
-          },
-          "adPDCNicName": {
-            "value": "[variables('adPDCNicName')]"
-          },
-          "adPDCNICIPAddress": {
-            "value": "[parameters('adPDCNICIPAddress')]"
-          },
-          "staticSubnetRef": {
-            "value": "[variables('staticSubnetRef')]"
-          },
-          "adBEAddressPoolID": {
-            "value": "[variables('derivedIds').adBEAddressPoolID]"
-          },
-          "adRDPNATRuleID": {
-            "value": "[variables('derivedIds').adRDPNATRuleID]"
-          },
-          "adBDCNicName": {
-            "value": "[variables('adBDCNicName')]"
-          },
-          "adBDCNICIPAddress": {
-            "value": "[parameters('adBDCNICIPAddress')]"
-          },
-          "sqlVMName": {
-            "value": "[variables('vmSettings').sqlVMName]"
-          },
-          "sqlSubnetRef": {
-            "value": "[variables('lanSubnetRef')]"
-          },
-          "sqlBEAddressPoolID": {
-            "value": "[variables('derivedIds').sqlBEAddressPoolID]"
-          },
-          "sqlwNicName": {
-            "value": "[variables('sqlwNicName')]"
-          },
-          "primaryDCIPAddressNameWithSuffix": {
-            "value": "[variables('primaryDCIPAddressName')]"
-          },
-          "backupDCIPAddressNameWithSuffix": {
-            "value": "[variables('backupDCIPAddressName')]"
-          },
-          "sql1AddressNameWithSuffix": {
-            "value": "[variables('sql1AddressName')]"
-          },
-          "sql0AddressNameWithSuffix": {
-            "value": "[variables('sql2AddressName')]"
-          }
-        }
-      }
-    }
+    //{
+    //  "name": "StorageAccountVirtualNetworkPublicIP",
+    //  "type": "Microsoft.Resources/deployments",
+    //  "apiVersion": "2015-01-01",
+    //  "comments": "This resource will create storage accounts for Active Directory, SQL Server, File Share Witness and Diagnostics. It will also create the Virtual Network and public IP addresses",
+    //  "properties": {
+    //    "mode": "Incremental",
+    //    "templateLink": {
+    //      "uri": "[variables('configuration').storageAccountVirtualNetworkPublicIP]",
+    //      "contentVersion": "1.0.0.0"
+    //    },
+    //    "parameters": {
+    //      "location": {
+    //        "value": "[resourceGroup().location]"
+    //      },
+    //      "sqlStorageAccountName": {
+    //        "value": "[variables('storageAccountNames').sqlStorageAccountName]"
+    //      },
+    //      "dcStorageAccountName": {
+    //        "value": "[variables('storageAccountNames').dcStorageAccountName]"
+    //      },
+    //      "SqlStorageAccountType": {
+    //        "value": "[parameters('sqlStorageAccountType')]"
+    //      },
+    //      "DcStorageAccountType": {
+    //        "value": "[parameters('dcStorageAccountType')]"
+    //      },
+    //      "primaryDCIPAddressNameWithSuffix": {
+    //        "value": "[variables('primaryDCIPAddressName')]"
+    //      },
+    //      "backupDCIPAddressNameWithSuffix": {
+    //        "value": "[variables('backupDCIPAddressName')]"
+    //      },
+    //      "sql1AddressNameWithSuffix": {
+    //        "value": "[variables('sql1AddressName')]"
+    //      },
+    //      "sql0AddressNameWithSuffix": {
+    //        "value": "[variables('sql2AddressName')]"
+    //      },
+    //      "virtualNetworkName": {
+    //        "value": "[variables('virtualNetworkName')]"
+    //      },
+    //      "virtualNetworkAddressRange": {
+    //        "value": "[parameters('virtualNetworkAddressRange')]"
+    //      },
+    //      "subnets": {
+    //        "value": "[variables('subnets')]"
+    //      }
+    //    }
+    //  }
+    //},
+    //{
+    //  "name": "LoadBalancers",
+    //  "type": "Microsoft.Resources/deployments",
+    //  "apiVersion": "2015-01-01",
+    //  "comments": "Create Load Balancers for SQL and DC",
+    //  "dependsOn": [
+    //    "Microsoft.Resources/deployments/StorageAccountVirtualNetworkPublicIP"
+    //  ],
+    //  "properties": {
+    //    "mode": "Incremental",
+    //    "templateLink": {
+    //      "uri": "[variables('configuration').setupLBsUrl]",
+    //      "contentVersion": "1.0.0.0"
+    //    },
+    //    "parameters": {
+    //      "location": {
+    //        "value": "[resourceGroup().location]"
+    //      },
+    //      "sqlLBName": {
+    //        "value": "[variables('lbSettings').sqlLBName]"
+    //      },
+    //      "sqlLBFE": {
+    //        "value": "[variables('lbSettings').sqlLBFE]"
+    //      },
+    //      "sqlLBIPAddress": {
+    //        "value": "[parameters('sqlLBIPAddress')]"
+    //      },
+    //      "staticSubnetRef": {
+    //        "value": "[variables('lanSubnetRef')]"
+    //      },
+    //      "sqlLBBE": {
+    //        "value": "[variables('lbSettings').sqlLBBE]"
+    //      },
+    //      "sqlLBBEID": {
+    //        "value": "[variables('derivedIds').sqlBEAddressPoolID]"
+    //      },
+    //      "sqllbFEConfigID": {
+    //        "value": "[variables('derivedIds').sqllbFEConfigID]"
+    //      },
+    //      "sqllbProbeID": {
+    //        "value": "[variables('derivedIds').sqllbProbeID]"
+    //      },
+    //      "SQLAOProbe": {
+    //        "value": "[variables('SQLAOProbe')]"
+    //      }
+    //    }
+    //  }
+    //},
+    //{
+    //  "name": "CreatingNetworkInterfaces",
+    //  "type": "Microsoft.Resources/deployments",
+    //  "apiVersion": "2015-01-01",
+    //  "dependsOn": [
+    //    "Microsoft.Resources/deployments/LoadBalancers"
+    //  ],
+    //  "properties": {
+    //    "mode": "Incremental",
+    //    "templateLink": {
+    //      "uri": "[variables('configuration').creatingNicsUrl]",
+    //      "contentVersion": "1.0.0.0"
+    //    },
+    //    "parameters": {
+    //      "location": {
+    //        "value": "[resourceGroup().location]"
+    //      },
+    //      "adPDCNicName": {
+    //        "value": "[variables('adPDCNicName')]"
+    //      },
+    //      "adPDCNICIPAddress": {
+    //        "value": "[parameters('adPDCNICIPAddress')]"
+    //      },
+    //      "staticSubnetRef": {
+    //        "value": "[variables('staticSubnetRef')]"
+    //      },
+    //      "adBEAddressPoolID": {
+    //        "value": "[variables('derivedIds').adBEAddressPoolID]"
+    //      },
+    //      "adRDPNATRuleID": {
+    //        "value": "[variables('derivedIds').adRDPNATRuleID]"
+    //      },
+    //      "adBDCNicName": {
+    //        "value": "[variables('adBDCNicName')]"
+    //      },
+    //      "adBDCNICIPAddress": {
+    //        "value": "[parameters('adBDCNICIPAddress')]"
+    //      },
+    //      "sqlVMName": {
+    //        "value": "[variables('vmSettings').sqlVMName]"
+    //      },
+    //      "sqlSubnetRef": {
+    //        "value": "[variables('lanSubnetRef')]"
+    //      },
+    //      "sqlBEAddressPoolID": {
+    //        "value": "[variables('derivedIds').sqlBEAddressPoolID]"
+    //      },
+    //      "sqlwNicName": {
+    //        "value": "[variables('sqlwNicName')]"
+    //      },
+    //      "primaryDCIPAddressNameWithSuffix": {
+    //        "value": "[variables('primaryDCIPAddressName')]"
+    //      },
+    //      "backupDCIPAddressNameWithSuffix": {
+    //        "value": "[variables('backupDCIPAddressName')]"
+    //      },
+    //      "sql1AddressNameWithSuffix": {
+    //        "value": "[variables('sql1AddressName')]"
+    //      },
+    //      "sql0AddressNameWithSuffix": {
+    //        "value": "[variables('sql2AddressName')]"
+    //      }
+    //    }
+    //  }
+    //}
 
     //{
     //  "name": "ProvisioningVMs",
