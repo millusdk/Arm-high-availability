@@ -498,6 +498,9 @@
           "dcStorageAccountName": {
             "value": "[variables('storageAccountNames').dcStorageAccountName]"
           },
+          "diagStorageAccountName": {
+            "value": "[variables('storageAccountNames').dcStorageAccountName]"
+          },
           "SqlStorageAccountType": {
             "value": "[parameters('sqlStorageAccountType')]"
           },
