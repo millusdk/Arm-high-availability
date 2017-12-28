@@ -53,6 +53,9 @@
     "dcStorageAccountName": {
       "type": "string"
     },
+    "fwstorageName": {
+      "type": "string"
+    },
     "sqlAvailabilitySetName": {
       "type": "string"
     },
@@ -96,7 +99,6 @@
   "variables": {
     "sqlstorageName": "[parameters('sqlStorageAccountName')]",
     "dcstorageName": "[parameters('dcStorageAccountName')]",
-    "fwstorageName": "[concat(uniquestring(parameters('sqlStorageAccountName')), 'fsw')]",
     "diagstorageName": "[concat(uniquestring(parameters('sqlStorageAccountName')), 'diag')]"
   },
   "resources": [
@@ -305,7 +307,7 @@
           "osDisk": {
             "name": "osdisk",
             "vhd": {
-              "uri": "[concat('http://',variables('fwstorageName'),'.blob.core.windows.net/',parameters('vmContainerName'),'/',parameters('sqlwVMName'),'-osdisk.vhd')]"
+              "uri": "[concat('http://',parameters('fwstorageName'),'.blob.core.windows.net/',parameters('vmContainerName'),'/',parameters('sqlwVMName'),'-osdisk.vhd')]"
             },
             "caching": "ReadWrite",
             "createOption": "FromImage"
@@ -313,7 +315,7 @@
           "dataDisks": [
             {
               "vhd": {
-                "uri": "[concat('http://',variables('fwstorageName'),'.blob.core.windows.net/',parameters('vmContainerName'),'/', parameters('sqlwVMName'),'-data-1.vhd')]"
+                "uri": "[concat('http://',parameters('fwstorageName'),'.blob.core.windows.net/',parameters('vmContainerName'),'/', parameters('sqlwVMName'),'-data-1.vhd')]"
               },
               "name": "[concat(parameters('sqlwVMName'),'-data-disk1')]",
               "caching": "None",

@@ -601,180 +601,183 @@
           }
         }
       }
+    },
+    {
+      "name": "CreatingNetworkInterfaces",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2015-01-01",
+      "dependsOn": [
+        "Microsoft.Resources/deployments/LoadBalancers"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[variables('configuration').creatingNicsUrl]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "location": {
+            "value": "[resourceGroup().location]"
+          },
+          "adPDCNicName": {
+            "value": "[variables('adPDCNicName')]"
+          },
+          "adPDCNICIPAddress": {
+            "value": "[parameters('adPDCNICIPAddress')]"
+          },
+          "staticSubnetRef": {
+            "value": "[variables('staticSubnetRef')]"
+          },
+          "adBEAddressPoolID": {
+            "value": "[variables('derivedIds').adBEAddressPoolID]"
+          },
+          "adRDPNATRuleID": {
+            "value": "[variables('derivedIds').adRDPNATRuleID]"
+          },
+          "adBDCNicName": {
+            "value": "[variables('adBDCNicName')]"
+          },
+          "adBDCNICIPAddress": {
+            "value": "[parameters('adBDCNICIPAddress')]"
+          },
+          "sqlVMName": {
+            "value": "[variables('vmSettings').sqlVMName]"
+          },
+          "sqlSubnetRef": {
+            "value": "[variables('lanSubnetRef')]"
+          },
+          "sqlBEAddressPoolID": {
+            "value": "[variables('derivedIds').sqlBEAddressPoolID]"
+          },
+          "sqlwNicName": {
+            "value": "[variables('sqlwNicName')]"
+          },
+          "primaryDCIPAddressNameWithSuffix": {
+            "value": "[variables('primaryDCIPAddressName')]"
+          },
+          "backupDCIPAddressNameWithSuffix": {
+            "value": "[variables('backupDCIPAddressName')]"
+          },
+          "sql1AddressNameWithSuffix": {
+            "value": "[variables('sql1AddressName')]"
+          },
+          "sql0AddressNameWithSuffix": {
+            "value": "[variables('sql2AddressName')]"
+          }
+        }
+      }
     }
-    //{
-    //  "name": "CreatingNetworkInterfaces",
-    //  "type": "Microsoft.Resources/deployments",
-    //  "apiVersion": "2015-01-01",
-    //  "dependsOn": [
-    //    "Microsoft.Resources/deployments/LoadBalancers"
-    //  ],
-    //  "properties": {
-    //    "mode": "Incremental",
-    //    "templateLink": {
-    //      "uri": "[variables('configuration').creatingNicsUrl]",
-    //      "contentVersion": "1.0.0.0"
-    //    },
-    //    "parameters": {
-    //      "location": {
-    //        "value": "[resourceGroup().location]"
-    //      },
-    //      "adPDCNicName": {
-    //        "value": "[variables('adPDCNicName')]"
-    //      },
-    //      "adPDCNICIPAddress": {
-    //        "value": "[parameters('adPDCNICIPAddress')]"
-    //      },
-    //      "staticSubnetRef": {
-    //        "value": "[variables('staticSubnetRef')]"
-    //      },
-    //      "adBEAddressPoolID": {
-    //        "value": "[variables('derivedIds').adBEAddressPoolID]"
-    //      },
-    //      "adRDPNATRuleID": {
-    //        "value": "[variables('derivedIds').adRDPNATRuleID]"
-    //      },
-    //      "adBDCNicName": {
-    //        "value": "[variables('adBDCNicName')]"
-    //      },
-    //      "adBDCNICIPAddress": {
-    //        "value": "[parameters('adBDCNICIPAddress')]"
-    //      },
-    //      "sqlVMName": {
-    //        "value": "[variables('vmSettings').sqlVMName]"
-    //      },
-    //      "sqlSubnetRef": {
-    //        "value": "[variables('lanSubnetRef')]"
-    //      },
-    //      "sqlBEAddressPoolID": {
-    //        "value": "[variables('derivedIds').sqlBEAddressPoolID]"
-    //      },
-    //      "sqlwNicName": {
-    //        "value": "[variables('sqlwNicName')]"
-    //      },
-    //      "primaryDCIPAddressNameWithSuffix": {
-    //        "value": "[variables('primaryDCIPAddressName')]"
-    //      },
-    //      "backupDCIPAddressNameWithSuffix": {
-    //        "value": "[variables('backupDCIPAddressName')]"
-    //      },
-    //      "sql1AddressNameWithSuffix": {
-    //        "value": "[variables('sql1AddressName')]"
-    //      },
-    //      "sql0AddressNameWithSuffix": {
-    //        "value": "[variables('sql2AddressName')]"
-    //      }
-    //    }
-    //  }
-    //}
 
-    //{
-    //  "name": "ProvisioningVMs",
-    //  "type": "Microsoft.Resources/deployments",
-    //  "apiVersion": "2015-01-01",
-    //  "dependsOn": [
-    //    "Microsoft.Resources/deployments/CreatingNetworkInterfaces"
-    //  ],
-    //  "properties": {
-    //    "mode": "Incremental",
-    //    "templateLink": {
-    //      "uri": "[variables('configuration').provisioningVMs]",
-    //      "contentVersion": "1.0.0.0"
-    //    },
-    //    "parameters": {
-    //      "adPDCVMName": {
-    //        "value": "[variables('vmSettings').adPDCVMName]"
-    //      },
-    //      "adAvailabilitySetName": {
-    //        "value": "[variables('vmSettings').availabilitySets.adAvailabilitySetName]"
-    //      },
-    //      "sqlAvailabilitySetName": {
-    //        "value": "[variables('vmSettings').availabilitySets.sqlAvailabilitySetName]"
-    //      },
-    //      "sqlStorageAccountName": {
-    //        "value": "[parameters('sqlStorageAccountName')]"
-    //      },
-    //      "dcStorageAccountName": {
-    //        "value": "[parameters('dcStorageAccountName')]"
-    //      },
-    //      "location": {
-    //        "value": "[resourceGroup().location]"
-    //      },
-    //      "adVMSize": {
-    //        "value": "[parameters('adVMSize')]"
-    //      },
-    //      "adminUsername": {
-    //        "value": "[parameters('adminUsername')]"
-    //      },
-    //      "adminPassword": {
-    //        "value": "[parameters('adminPassword')]"
-    //      },
-    //      "adImagePublisher": {
-    //        "value": "[variables('vmSettings').windowsImagePublisher]"
-    //      },
-    //      "adImageOffer": {
-    //        "value": "[variables('vmSettings').windowsImageOffer]"
-    //      },
-    //      "adImageSKU": {
-    //        "value": "[variables('vmSettings').windowsImageSKU]"
-    //      },
-    //      "vmContainerName": {
-    //        "value": "[variables('vmSettings').vmContainerName]"
-    //      },
-    //      "adPDCNicName": {
-    //        "value": "[variables('adPDCNicName')]"
-    //      },
-    //      "domainName": {
-    //        "value": "[parameters('domainName')]"
-    //      },
-    //      "adPDCConfigurationFunction": {
-    //        "value": "[variables('configuration').adPDCConfigurationFunction]"
-    //      },
-    //      "adPDCModulesURL": {
-    //        "value": "[variables('configuration').adPDCModulesURL]"
-    //      },
-    //      "adBDCVMName": {
-    //        "value": "[variables('vmSettings').adBDCVMName]"
-    //      },
-    //      "adBDCNicName": {
-    //        "value": "[variables('adBDCNicName')]"
-    //      },
-    //      "sqlVMName": {
-    //        "value": "[variables('vmSettings').sqlVMName]"
-    //      },
-    //      "sqlVMSize": {
-    //        "value": "[parameters('sqlVMSize')]"
-    //      },
-    //      "fswImagePublisher": {
-    //        "value": "[variables('vmSettings').windowsImagePublisher]"
-    //      },
-    //      "fswImageOffer": {
-    //        "value": "[variables('vmSettings').windowsImageOffer]"
-    //      },
-    //      "fswImageSKU": {
-    //        "value": "[variables('vmSettings').windowsImageSKU]"
-    //      },
-    //      "sqlImagePublisher": {
-    //        "value": "[variables('vmSettings').sqlImagePublisher]"
-    //      },
-    //      "sqlImageOffer": {
-    //        "value": "[variables('vmSettings').sqlImageOffer]"
-    //      },
-    //      "sqlImageSKU": {
-    //        "value": "[variables(parameters('sqlServerVersion'))]"
-    //      },
-    //      "witnessVMSize": {
-    //        "value": "[parameters('witnessVMSize')]"
-    //      },
-    //      "sqlwVMName": {
-    //        "value": "[variables('vmSettings').sqlwVMName]"
-    //      },
-    //      "sqlwNicName": {
-    //        "value": "[variables('sqlwNicName')]"
-    //      }
-    //    }
-    //  }
-    //},
+    {
+      "name": "ProvisioningVMs",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2015-01-01",
+      "dependsOn": [
+        "Microsoft.Resources/deployments/CreatingNetworkInterfaces"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[variables('configuration').provisioningVMs]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "adPDCVMName": {
+            "value": "[variables('vmSettings').adPDCVMName]"
+          },
+          "adAvailabilitySetName": {
+            "value": "[variables('vmSettings').availabilitySets.adAvailabilitySetName]"
+          },
+          "sqlAvailabilitySetName": {
+            "value": "[variables('vmSettings').availabilitySets.sqlAvailabilitySetName]"
+          },
+          "sqlStorageAccountName": {
+            "value": "[variables('storageAccountNames').sqlStorageAccountName]"
+          },
+          "dcStorageAccountName": {
+            "value": "[variables('storageAccountNames').dcStorageAccountName]"
+          },
+          "fwstorageName": {
+            "value": "[variables('storageAccountNames').fswStorageAccountName]"
+          },
+          "location": {
+            "value": "[resourceGroup().location]"
+          },
+          "adVMSize": {
+            "value": "[parameters('adVMSize')]"
+          },
+          "adminUsername": {
+            "value": "[parameters('adminUsername')]"
+          },
+          "adminPassword": {
+            "value": "[parameters('adminPassword')]"
+          },
+          "adImagePublisher": {
+            "value": "[variables('vmSettings').windowsImagePublisher]"
+          },
+          "adImageOffer": {
+            "value": "[variables('vmSettings').windowsImageOffer]"
+          },
+          "adImageSKU": {
+            "value": "[variables('vmSettings').windowsImageSKU]"
+          },
+          "vmContainerName": {
+            "value": "[variables('vmSettings').vmContainerName]"
+          },
+          "adPDCNicName": {
+            "value": "[variables('adPDCNicName')]"
+          },
+          "domainName": {
+            "value": "[parameters('domainName')]"
+          },
+          "adPDCConfigurationFunction": {
+            "value": "[variables('configuration').adPDCConfigurationFunction]"
+          },
+          "adPDCModulesURL": {
+            "value": "[variables('configuration').adPDCModulesURL]"
+          },
+          "adBDCVMName": {
+            "value": "[variables('vmSettings').adBDCVMName]"
+          },
+          "adBDCNicName": {
+            "value": "[variables('adBDCNicName')]"
+          },
+          "sqlVMName": {
+            "value": "[variables('vmSettings').sqlVMName]"
+          },
+          "sqlVMSize": {
+            "value": "[parameters('sqlVMSize')]"
+          },
+          "fswImagePublisher": {
+            "value": "[variables('vmSettings').windowsImagePublisher]"
+          },
+          "fswImageOffer": {
+            "value": "[variables('vmSettings').windowsImageOffer]"
+          },
+          "fswImageSKU": {
+            "value": "[variables('vmSettings').windowsImageSKU]"
+          },
+          "sqlImagePublisher": {
+            "value": "[variables('vmSettings').sqlImagePublisher]"
+          },
+          "sqlImageOffer": {
+            "value": "[variables('vmSettings').sqlImageOffer]"
+          },
+          "sqlImageSKU": {
+            "value": "SQLDEV"
+          },
+          "witnessVMSize": {
+            "value": "[parameters('witnessVMSize')]"
+          },
+          "sqlwVMName": {
+            "value": "[variables('vmSettings').sqlwVMName]"
+          },
+          "sqlwNicName": {
+            "value": "[variables('sqlwNicName')]"
+          }
+        }
+      }
+    }
     //{
     //  "name": "UpdatingDNStoPrimaryADVM",
     //  "type": "Microsoft.Resources/deployments",
