@@ -529,144 +529,144 @@
           }
         }
       }
-    },
-    {
-      "name": "LoadBalancers",
-      "type": "Microsoft.Resources/deployments",
-      "apiVersion": "2015-01-01",
-      "comments": "Create Load Balancers for SQL and DC",
-      "dependsOn": [
-        "Microsoft.Resources/deployments/StorageAccountVirtualNetworkPublicIP"
-      ],
-      "properties": {
-        "mode": "Incremental",
-        "templateLink": {
-          "uri": "[variables('configuration').setupLBsUrl]",
-          "contentVersion": "1.0.0.0"
-        },
-        "parameters": {
-          "location": {
-            "value": "[resourceGroup().location]"
-          },
-          "staticSubnetRef": {
-            "value": "[variables('lanSubnetRef')]"
-          },
-          "sqlLBName": {
-            "value": "[variables('lbSettings').sqlLBName]"
-          },
-          "sqlLBFE": {
-            "value": "[variables('lbSettings').sqlLBFE]"
-          },
-          "sqlLBIPAddress": {
-            "value": "[parameters('sqlLBIPAddress')]"
-          },
-          "sqlLBBE": {
-            "value": "[variables('lbSettings').sqlLBBE]"
-          },
-          "sqlLBBEID": {
-            "value": "[variables('derivedIds').sqlBEAddressPoolID]"
-          },
-          "sqllbFEConfigID": {
-            "value": "[variables('derivedIds').sqllbFEConfigID]"
-          },
-          "sqllbProbeID": {
-            "value": "[variables('derivedIds').sqllbProbeID]"
-          },
-          "SQLAOProbe": {
-            "value": "[variables('SQLAOProbe')]"
-          },
-          "webLBName": {
-            "value": "[variables('lbSettings').webLBName]"
-          },
-          "webLBIp": {
-            "value": "[variables('derivedIds').webLBIp]"
-          },
-          "webLBFE": {
-            "value": "[variables('lbSettings').webLBFE]"
-          },
-          "webLBBE": {
-            "value": "[variables('lbSettings').webLBBE]"
-          },
-          "webLBBEID": {
-            "value": "[variables('derivedIds').webBEAddressPoolID]"
-          },
-          "weblbFEConfigID": {
-            "value": "[variables('derivedIds').weblbFEConfigID]"
-          },
-          "weblbProbeID": {
-            "value": "[variables('derivedIds').weblbProbeID]"
-          },
-          "webProbe": {
-            "value": "[variables('webProbe')]"
-          }
-        }
-      }
-    },
-    {
-      "name": "CreatingNetworkInterfaces",
-      "type": "Microsoft.Resources/deployments",
-      "apiVersion": "2015-01-01",
-      "dependsOn": [
-        "Microsoft.Resources/deployments/LoadBalancers"
-      ],
-      "properties": {
-        "mode": "Incremental",
-        "templateLink": {
-          "uri": "[variables('configuration').creatingNicsUrl]",
-          "contentVersion": "1.0.0.0"
-        },
-        "parameters": {
-          "location": {
-            "value": "[resourceGroup().location]"
-          },
-          "adPDCNicName": {
-            "value": "[variables('adPDCNicName')]"
-          },
-          "adPDCNICIPAddress": {
-            "value": "[parameters('adPDCNICIPAddress')]"
-          },
-          "staticSubnetRef": {
-            "value": "[variables('staticSubnetRef')]"
-          },
-          "adBEAddressPoolID": {
-            "value": "[variables('derivedIds').adBEAddressPoolID]"
-          },
-          "adRDPNATRuleID": {
-            "value": "[variables('derivedIds').adRDPNATRuleID]"
-          },
-          "adBDCNicName": {
-            "value": "[variables('adBDCNicName')]"
-          },
-          "adBDCNICIPAddress": {
-            "value": "[parameters('adBDCNICIPAddress')]"
-          },
-          "sqlVMName": {
-            "value": "[variables('vmSettings').sqlVMName]"
-          },
-          "sqlSubnetRef": {
-            "value": "[variables('lanSubnetRef')]"
-          },
-          "sqlBEAddressPoolID": {
-            "value": "[variables('derivedIds').sqlBEAddressPoolID]"
-          },
-          "sqlwNicName": {
-            "value": "[variables('sqlwNicName')]"
-          },
-          "primaryDCIPAddressNameWithSuffix": {
-            "value": "[variables('primaryDCIPAddressName')]"
-          },
-          "backupDCIPAddressNameWithSuffix": {
-            "value": "[variables('backupDCIPAddressName')]"
-          },
-          "sql1AddressNameWithSuffix": {
-            "value": "[variables('sql1AddressName')]"
-          },
-          "sql0AddressNameWithSuffix": {
-            "value": "[variables('sql2AddressName')]"
-          }
-        }
-      }
     }
+    //{
+    //  "name": "LoadBalancers",
+    //  "type": "Microsoft.Resources/deployments",
+    //  "apiVersion": "2015-01-01",
+    //  "comments": "Create Load Balancers for SQL and DC",
+    //  "dependsOn": [
+    //    "Microsoft.Resources/deployments/StorageAccountVirtualNetworkPublicIP"
+    //  ],
+    //  "properties": {
+    //    "mode": "Incremental",
+    //    "templateLink": {
+    //      "uri": "[variables('configuration').setupLBsUrl]",
+    //      "contentVersion": "1.0.0.0"
+    //    },
+    //    "parameters": {
+    //      "location": {
+    //        "value": "[resourceGroup().location]"
+    //      },
+    //      "staticSubnetRef": {
+    //        "value": "[variables('lanSubnetRef')]"
+    //      },
+    //      "sqlLBName": {
+    //        "value": "[variables('lbSettings').sqlLBName]"
+    //      },
+    //      "sqlLBFE": {
+    //        "value": "[variables('lbSettings').sqlLBFE]"
+    //      },
+    //      "sqlLBIPAddress": {
+    //        "value": "[parameters('sqlLBIPAddress')]"
+    //      },
+    //      "sqlLBBE": {
+    //        "value": "[variables('lbSettings').sqlLBBE]"
+    //      },
+    //      "sqlLBBEID": {
+    //        "value": "[variables('derivedIds').sqlBEAddressPoolID]"
+    //      },
+    //      "sqllbFEConfigID": {
+    //        "value": "[variables('derivedIds').sqllbFEConfigID]"
+    //      },
+    //      "sqllbProbeID": {
+    //        "value": "[variables('derivedIds').sqllbProbeID]"
+    //      },
+    //      "SQLAOProbe": {
+    //        "value": "[variables('SQLAOProbe')]"
+    //      },
+    //      "webLBName": {
+    //        "value": "[variables('lbSettings').webLBName]"
+    //      },
+    //      "webLBIp": {
+    //        "value": "[variables('derivedIds').webLBIp]"
+    //      },
+    //      "webLBFE": {
+    //        "value": "[variables('lbSettings').webLBFE]"
+    //      },
+    //      "webLBBE": {
+    //        "value": "[variables('lbSettings').webLBBE]"
+    //      },
+    //      "webLBBEID": {
+    //        "value": "[variables('derivedIds').webBEAddressPoolID]"
+    //      },
+    //      "weblbFEConfigID": {
+    //        "value": "[variables('derivedIds').weblbFEConfigID]"
+    //      },
+    //      "weblbProbeID": {
+    //        "value": "[variables('derivedIds').weblbProbeID]"
+    //      },
+    //      "webProbe": {
+    //        "value": "[variables('webProbe')]"
+    //      }
+    //    }
+    //  }
+    //},
+    //{
+    //  "name": "CreatingNetworkInterfaces",
+    //  "type": "Microsoft.Resources/deployments",
+    //  "apiVersion": "2015-01-01",
+    //  "dependsOn": [
+    //    "Microsoft.Resources/deployments/LoadBalancers"
+    //  ],
+    //  "properties": {
+    //    "mode": "Incremental",
+    //    "templateLink": {
+    //      "uri": "[variables('configuration').creatingNicsUrl]",
+    //      "contentVersion": "1.0.0.0"
+    //    },
+    //    "parameters": {
+    //      "location": {
+    //        "value": "[resourceGroup().location]"
+    //      },
+    //      "adPDCNicName": {
+    //        "value": "[variables('adPDCNicName')]"
+    //      },
+    //      "adPDCNICIPAddress": {
+    //        "value": "[parameters('adPDCNICIPAddress')]"
+    //      },
+    //      "staticSubnetRef": {
+    //        "value": "[variables('staticSubnetRef')]"
+    //      },
+    //      "adBEAddressPoolID": {
+    //        "value": "[variables('derivedIds').adBEAddressPoolID]"
+    //      },
+    //      "adRDPNATRuleID": {
+    //        "value": "[variables('derivedIds').adRDPNATRuleID]"
+    //      },
+    //      "adBDCNicName": {
+    //        "value": "[variables('adBDCNicName')]"
+    //      },
+    //      "adBDCNICIPAddress": {
+    //        "value": "[parameters('adBDCNICIPAddress')]"
+    //      },
+    //      "sqlVMName": {
+    //        "value": "[variables('vmSettings').sqlVMName]"
+    //      },
+    //      "sqlSubnetRef": {
+    //        "value": "[variables('lanSubnetRef')]"
+    //      },
+    //      "sqlBEAddressPoolID": {
+    //        "value": "[variables('derivedIds').sqlBEAddressPoolID]"
+    //      },
+    //      "sqlwNicName": {
+    //        "value": "[variables('sqlwNicName')]"
+    //      },
+    //      "primaryDCIPAddressNameWithSuffix": {
+    //        "value": "[variables('primaryDCIPAddressName')]"
+    //      },
+    //      "backupDCIPAddressNameWithSuffix": {
+    //        "value": "[variables('backupDCIPAddressName')]"
+    //      },
+    //      "sql1AddressNameWithSuffix": {
+    //        "value": "[variables('sql1AddressName')]"
+    //      },
+    //      "sql0AddressNameWithSuffix": {
+    //        "value": "[variables('sql2AddressName')]"
+    //      }
+    //    }
+    //  }
+    //}
 
     //{
     //  "name": "ProvisioningVMs",
