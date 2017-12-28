@@ -562,72 +562,72 @@
           }
         }
       }
+    },
+    {
+      "name": "CreatingNetworkInterfaces",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2015-01-01",
+      "dependsOn": [
+        "Microsoft.Resources/deployments/LoadBalancers"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[variables('configuration').creatingNicsUrl]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "location": {
+            "value": "[resourceGroup().location]"
+          },
+          "adPDCNicName": {
+            "value": "[variables('adPDCNicName')]"
+          },
+          "adPDCNICIPAddress": {
+            "value": "[parameters('adPDCNICIPAddress')]"
+          },
+          "staticSubnetRef": {
+            "value": "[variables('staticSubnetRef')]"
+          },
+          "adBEAddressPoolID": {
+            "value": "[variables('derivedIds').adBEAddressPoolID]"
+          },
+          "adRDPNATRuleID": {
+            "value": "[variables('derivedIds').adRDPNATRuleID]"
+          },
+          "adBDCNicName": {
+            "value": "[variables('adBDCNicName')]"
+          },
+          "adBDCNICIPAddress": {
+            "value": "[parameters('adBDCNICIPAddress')]"
+          },
+          "sqlVMName": {
+            "value": "[variables('vmSettings').sqlVMName]"
+          },
+          "sqlSubnetRef": {
+            "value": "[variables('lanSubnetRef')]"
+          },
+          "sqlBEAddressPoolID": {
+            "value": "[variables('derivedIds').sqlBEAddressPoolID]"
+          },
+          "sqlwNicName": {
+            "value": "[variables('sqlwNicName')]"
+          },
+          "primaryDCIPAddressNameWithSuffix": {
+            "value": "[variables('primaryDCIPAddressName')]"
+          },
+          "backupDCIPAddressNameWithSuffix": {
+            "value": "[variables('backupDCIPAddressName')]"
+          },
+          "sql1AddressNameWithSuffix": {
+            "value": "[variables('sql1AddressName')]"
+          },
+          "sql0AddressNameWithSuffix": {
+            "value": "[variables('sql2AddressName')]"
+          }
+        }
+      }
     }
-    //{
-    //  "name": "CreatingNetworkInterfaces",
-    //  "type": "Microsoft.Resources/deployments",
-    //  "apiVersion": "2015-01-01",
-    //  "dependsOn": [
-    //    "Microsoft.Resources/deployments/LoadBalancers"
-    //  ],
-    //  "properties": {
-    //    "mode": "Incremental",
-    //    "templateLink": {
-    //      "uri": "[variables('configuration').creatingNicsUrl]",
-    //      "contentVersion": "1.0.0.0"
-    //    },
-    //    "parameters": {
-    //      "location": {
-    //        "value": "[resourceGroup().location]"
-    //      },
-    //      "adPDCNicName": {
-    //        "value": "[variables('adPDCNicName')]"
-    //      },
-    //      "adPDCNICIPAddress": {
-    //        "value": "[parameters('adPDCNICIPAddress')]"
-    //      },
-    //      "staticSubnetRef": {
-    //        "value": "[variables('staticSubnetRef')]"
-    //      },
-    //      "adBEAddressPoolID": {
-    //        "value": "[variables('derivedIds').adBEAddressPoolID]"
-    //      },
-    //      "adRDPNATRuleID": {
-    //        "value": "[variables('derivedIds').adRDPNATRuleID]"
-    //      },
-    //      "adBDCNicName": {
-    //        "value": "[variables('adBDCNicName')]"
-    //      },
-    //      "adBDCNICIPAddress": {
-    //        "value": "[parameters('adBDCNICIPAddress')]"
-    //      },
-    //      "sqlVMName": {
-    //        "value": "[variables('vmSettings').sqlVMName]"
-    //      },
-    //      "sqlSubnetRef": {
-    //        "value": "[variables('lanSubnetRef')]"
-    //      },
-    //      "sqlBEAddressPoolID": {
-    //        "value": "[variables('derivedIds').sqlBEAddressPoolID]"
-    //      },
-    //      "sqlwNicName": {
-    //        "value": "[variables('sqlwNicName')]"
-    //      },
-    //      "primaryDCIPAddressNameWithSuffix": {
-    //        "value": "[variables('primaryDCIPAddressName')]"
-    //      },
-    //      "backupDCIPAddressNameWithSuffix": {
-    //        "value": "[variables('backupDCIPAddressName')]"
-    //      },
-    //      "sql1AddressNameWithSuffix": {
-    //        "value": "[variables('sql1AddressName')]"
-    //      },
-    //      "sql0AddressNameWithSuffix": {
-    //        "value": "[variables('sql2AddressName')]"
-    //      }
-    //    }
-    //  }
-    //}
 
     //{
     //  "name": "ProvisioningVMs",
