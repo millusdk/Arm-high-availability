@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|AnyCPU">
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|AnyCPU">
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>7ba72f34-f219-4dee-bddd-7e1973754613</ProjectGuid>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFrameworkIdentifier>Deployment</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>1.0</TargetFrameworkVersion>
+    <PrepareForBuildDependsOn>
+    </PrepareForBuildDependsOn>
+  </PropertyGroup>
+  <Import Condition=" Exists('Deployment.targets') " Project="Deployment.targets" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
+  <!-- vertag<:>start tokens<:>maj.min -->
+  <Import Condition=" Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Deployment\1.1\DeploymentProject.targets') " Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Deployment\1.1\DeploymentProject.targets" />
+  <!-- vertag<:>end -->
+  <ItemGroup>
+    <Content Include="azuredeploy.json" />
+    <Content Include="azuredeploy.parameters.json" />
+    <None Include="Deployment.targets">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Ensure-DeployStorageAccountExists.ps1" />
+    <None Include="nestedtemplates\configuringAlwaysOn.json" />
+    <None Include="nestedtemplates\configuringBackupADVM.json" />
+    <None Include="nestedtemplates\creatingNICS.json" />
+    <None Include="nestedtemplates\nic.json" />
+    <None Include="nestedtemplates\preparingSqlServer.json" />
+    <None Include="nestedtemplates\provisioningNetworkStorageAGSet.json" />
+    <None Include="nestedtemplates\provisioningVM4.json" />
+    <None Include="nestedtemplates\publicip-rdp.json" />
+    <None Include="nestedtemplates\setupLBs.json" />
+    <None Include="nestedtemplates\storageAccountVirtualNetworkPublicIP.json" />
+    <None Include="nestedtemplates\vnet-new.json" />
+    <None Include="nestedtemplates\vnet-with-dns-server.json" />
+    <None Include="DSC\cDisk\cDisk.psd1" />
+    <None Include="DSC\cDisk\DSCResources\SAMPLE_cDiskNoRestart\SAMPLE_cDiskNoRestart.psm1" />
+    <None Include="DSC\cDisk\DSCResources\SAMPLE_cDiskNoRestart\SAMPLE_cDiskNoRestart.schema.mof" />
+    <None Include="DSC\CreateADBDC.ps1" />
+    <None Include="DSC\CreateADPDC.ps1" />
+    <None Include="DSC\CreateFailoverCluster.ps1" />
+    <None Include="DSC\CreateFileShareWitness.ps1" />
+    <None Include="DSC\PrepareAlwaysOnSqlServer.ps1" />
+    <None Include="DSC\xActiveDirectory\DSCResources\MSFT_xADDomainController\MSFT_xADDomainController.psm1" />
+    <None Include="DSC\xActiveDirectory\DSCResources\MSFT_xADDomainController\MSFT_xADDomainController.schema.mof" />
+    <None Include="DSC\xActiveDirectory\DSCResources\MSFT_xADDomainTrust\MSFT_xADDomainTrust.psm1" />
+    <None Include="DSC\xActiveDirectory\DSCResources\MSFT_xADDomainTrust\MSFT_xADDomainTrust.schema.mof" />
+    <None Include="DSC\xActiveDirectory\DSCResources\MSFT_xADDomain\MSFT_xADDomain.psm1" />
+    <None Include="DSC\xActiveDirectory\DSCResources\MSFT_xADDomain\MSFT_xADDomain.schema.mof" />
+    <None Include="DSC\xActiveDirectory\DSCResources\MSFT_xADUser\MSFT_xADUser.psm1" />
+    <None Include="DSC\xActiveDirectory\DSCResources\MSFT_xADUser\MSFT_xADUser.schema.mof" />
+    <None Include="DSC\xActiveDirectory\DSCResources\MSFT_xWaitForADDomain\MSFT_xWaitForADDomain.psm1" />
+    <None Include="DSC\xActiveDirectory\DSCResources\MSFT_xWaitForADDomain\MSFT_xWaitForADDomain.schema.mof" />
+    <None Include="DSC\xActiveDirectory\xActiveDirectory.psd1" />
+    <None Include="DSC\xActiveDirectory\xActiveDirectory_TechNetDocumentation.html" />
+    <None Include="DSC\xComputerManagement\DSCResources\MSFT_xComputer\MSFT_xComputer.psm1" />
+    <None Include="DSC\xComputerManagement\DSCResources\MSFT_xComputer\MSFT_xComputer.schema.mof" />
+    <None Include="DSC\xComputerManagement\Ms-LPL_2010.docx" />
+    <None Include="DSC\xComputerManagement\xComputerManagement.psd1" />
+    <None Include="DSC\xComputerManagement\xComputerManagement_Documentation.html" />
+    <None Include="DSC\xComputerManagement\_PSGetItemInfo.xml" />
+    <None Include="DSC\xDisk\DSCResources\MSFT_xDisk\MSFT_xDisk.psm1" />
+    <None Include="DSC\xDisk\DSCResources\MSFT_xDisk\MSFT_xDisk.schema.mof" />
+    <None Include="DSC\xDisk\DSCResources\MSFT_xWaitForDisk\MSFT_xWaitForDisk.psm1" />
+    <None Include="DSC\xDisk\DSCResources\MSFT_xWaitForDisk\MSFT_xWaitForDisk.schema.mof" />
+    <None Include="DSC\xDisk\PSGetModuleInfo.xml" />
+    <None Include="DSC\xDisk\xDisk.psd1" />
+    <None Include="DSC\xDisk\xDisk_Documentation.html" />
+    <None Include="DSC\xFailOverCluster\DSCResources\MicrosoftAzure_xClusterQuorum\MicrosoftAzure_xClusterQuorum.psm1" />
+    <None Include="DSC\xFailOverCluster\DSCResources\MicrosoftAzure_xClusterQuorum\MicrosoftAzure_xClusterQuorum.schema.mof" />
+    <None Include="DSC\xFailOverCluster\DSCResources\MicrosoftAzure_xCluster\MicrosoftAzure_xCluster.psm1" />
+    <None Include="DSC\xFailOverCluster\DSCResources\MicrosoftAzure_xCluster\MicrosoftAzure_xCluster.schema.mof" />
+    <None Include="DSC\xFailOverCluster\DSCResources\MicrosoftAzure_xWaitForCluster\MicrosoftAzure_xWaitForCluster.psm1" />
+    <None Include="DSC\xFailOverCluster\DSCResources\MicrosoftAzure_xWaitForCluster\MicrosoftAzure_xWaitForCluster.schema.mof" />
+    <None Include="DSC\xFailOverCluster\DSCResources\MicrosoftAzure_xWaitForFileShareWitness\MicrosoftAzure_xWaitForFileShareWitness.psm1" />
+    <None Include="DSC\xFailOverCluster\DSCResources\MicrosoftAzure_xWaitForFileShareWitness\MicrosoftAzure_xWaitForFileShareWitness.schema.mof" />
+    <None Include="DSC\xFailOverCluster\xFailOverCluster.psd1" />
+    <None Include="DSC\xNetworking\DSCResources\MSFT_xDNSServerAddress\MSFT_xDNSServerAddress.psm1" />
+    <None Include="DSC\xNetworking\DSCResources\MSFT_xDNSServerAddress\MSFT_xDNSServerAddress.schema.mof" />
+    <None Include="DSC\xNetworking\DSCResources\MSFT_xFirewall\MSFT_xFirewall.psm1" />
+    <None Include="DSC\xNetworking\DSCResources\MSFT_xFirewall\MSFT_xFirewall.Schema.mof" />
+    <None Include="DSC\xNetworking\DSCResources\MSFT_xIPAddress\MSFT_xIPAddress.psm1" />
+    <None Include="DSC\xNetworking\DSCResources\MSFT_xIPAddress\MSFT_xIPAddress.schema.mof" />
+    <None Include="DSC\xNetworking\Examples\Sample_xDnsServerAddress.ps1" />
+    <None Include="DSC\xNetworking\Examples\Sample_xFirewall_AddFirewallRule.ps1" />
+    <None Include="DSC\xNetworking\Examples\Sample_xFirewall_AddFirewallRuleToExistingGroup.ps1" />
+    <None Include="DSC\xNetworking\Examples\Sample_xFirewall_AddFirewallRuleToNewGroup.ps1" />
+    <None Include="DSC\xNetworking\Examples\Sample_xFirewall_DisableAccessToApplication.ps1" />
+    <None Include="DSC\xNetworking\Examples\Sample_xIPAddress_FixedValue.ps1" />
+    <None Include="DSC\xNetworking\Examples\Sample_xIPAddress_Parameterized.ps1" />
+    <None Include="DSC\xNetworking\xNetworking.psd1" />
+    <None Include="DSC\xNetworking\xNetworking_TechNetDocumentation.html" />
+    <None Include="DSC\xSmbShare\DscResources\MSFT_xSmbShare\MSFT_xSmbShare.psm1" />
+    <None Include="DSC\xSmbShare\DscResources\MSFT_xSmbShare\MSFT_xSmbShare.schema.mof" />
+    <None Include="DSC\xSmbShare\xSmbShare.psd1" />
+    <None Include="DSC\xSqlPs\DSCResources\MSFT_xSqlHAEndPoint\MSFT_xSqlHAEndPoint.psm1" />
+    <None Include="DSC\xSqlPs\DSCResources\MSFT_xSqlHAEndPoint\MSFT_xSqlHAEndPoint.schema.mof" />
+    <None Include="DSC\xSqlPs\DSCResources\MSFT_xSqlHAGroup\MSFT_xSqlHAGroup.psm1" />
+    <None Include="DSC\xSqlPs\DSCResources\MSFT_xSqlHAGroup\MSFT_xSqlHAGroup.schema.mof" />
+    <None Include="DSC\xSqlPs\DSCResources\MSFT_xSqlHAService\MSFT_xSqlHAService.psm1" />
+    <None Include="DSC\xSqlPs\DSCResources\MSFT_xSqlHAService\MSFT_xSqlHAService.schema.mof" />
+    <None Include="DSC\xSqlPs\DSCResources\MSFT_xSqlServerInstall\MSFT_xSqlServerInstall.psm1" />
+    <None Include="DSC\xSqlPs\DSCResources\MSFT_xSqlServerInstall\MSFT_xSqlServerInstall.schema.mof" />
+    <None Include="DSC\xSqlPs\DSCResources\MSFT_xWaitForSqlHAGroup\MSFT_xWaitForSqlHAGroup.psm1" />
+    <None Include="DSC\xSqlPs\DSCResources\MSFT_xWaitForSqlHAGroup\MSFT_xWaitForSqlHAGroup.schema.mof" />
+    <None Include="DSC\xSqlPs\Samples\sql101.ps1" />
+    <None Include="DSC\xSqlPs\xSqlPs.psd1" />
+    <None Include="DSC\xSqlPs\xSqlPs_TNDocumentation.html" />
+    <None Include="DSC\xSQLServer\DSCResources\MSFT_xSQLServerFailoverClusterSetup\MSFT_xSQLServerFailoverClusterSetup.psm1" />
+    <None Include="DSC\xSQLServer\DSCResources\MSFT_xSQLServerFailoverClusterSetup\MSFT_xSQLServerFailoverClusterSetup.schema.mof" />
+    <None Include="DSC\xSQLServer\DSCResources\MSFT_xSQLServerFirewall\MSFT_xSQLServerFirewall.psm1" />
+    <None Include="DSC\xSQLServer\DSCResources\MSFT_xSQLServerFirewall\MSFT_xSQLServerFirewall.schema.mof" />
+    <None Include="DSC\xSQLServer\DSCResources\MSFT_xSQLServerRSConfig\MSFT_xSQLServerRSConfig.psm1" />
+    <None Include="DSC\xSQLServer\DSCResources\MSFT_xSQLServerRSConfig\MSFT_xSQLServerRSConfig.schema.mof" />
+    <None Include="DSC\xSQLServer\DSCResources\MSFT_xSQLServerRSSecureConnectionLevel\MSFT_xSQLServerRSSecureConnectionLevel.psm1" />
+    <None Include="DSC\xSQLServer\DSCResources\MSFT_xSQLServerRSSecureConnectionLevel\MSFT_xSQLServerRSSecureConnectionLevel.schema.mof" />
+    <None Include="DSC\xSQLServer\DSCResources\MSFT_xSQLServerSetup\MSFT_xSQLServerSetup.psm1" />
+    <None Include="DSC\xSQLServer\DSCResources\MSFT_xSQLServerSetup\MSFT_xSQLServerSetup.schema.mof" />
+    <None Include="DSC\xSQLServer\en-US\xPDT.strings.psd1" />
+    <None Include="DSC\xSQLServer\xPDT.psm1" />
+    <None Include="DSC\xSQLServer\xSQLServer.psd1" />
+    <None Include="DSC\xSQLServer\xSQLServer_Documentation.html" />
+    <None Include="DSC\xSQL\DSCResources\MicrosoftAzure_xSQLAddListenerIPToDNS\MicrosoftAzure_xSQLAddListenerIPToDNS.psm1" />
+    <None Include="DSC\xSQL\DSCResources\MicrosoftAzure_xSQLAddListenerIPToDNS\MicrosoftAzure_xSQLAddListenerIPToDNS.schema.mof" />
+    <None Include="DSC\xSQL\DSCResources\MicrosoftAzure_xSqlAvailabilityGroupListener\MicrosoftAzure_xSqlAvailabilityGroupListener.psm1" />
+    <None Include="DSC\xSQL\DSCResources\MicrosoftAzure_xSqlAvailabilityGroupListener\MicrosoftAzure_xSqlAvailabilityGroupListener.schema.mof" />
+    <None Include="DSC\xSQL\DSCResources\MicrosoftAzure_xSqlAvailabilityGroup\MicrosoftAzure_xSqlAvailabilityGroup.psm1" />
+    <None Include="DSC\xSQL\DSCResources\MicrosoftAzure_xSqlAvailabilityGroup\MicrosoftAzure_xSqlAvailabilityGroup.schema.mof" />
+    <None Include="DSC\xSQL\DSCResources\MicrosoftAzure_xSqlCreateDataDisk\MicrosoftAzure_xSqlCreateDataDisk.psm1" />
+    <None Include="DSC\xSQL\DSCResources\MicrosoftAzure_xSqlCreateDataDisk\MicrosoftAzure_xSqlCreateDataDisk.schema.mof" />
+    <None Include="DSC\xSQL\DSCResources\MicrosoftAzure_xSqlCreateVirtualDisk\MicrosoftAzure_xSqlCreateVirtualDisk.psm1" />
+    <None Include="DSC\xSQL\DSCResources\MicrosoftAzure_xSqlCreateVirtualDisk\MicrosoftAzure_xSqlCreateVirtualDisk.schema.mof" />
+    <None Include="DSC\xSQL\DSCResources\MicrosoftAzure_xSqlEndpoint\MicrosoftAzure_xSqlEndpoint.psm1" />
+    <None Include="DSC\xSQL\DSCResources\MicrosoftAzure_xSqlEndpoint\MicrosoftAzure_xSqlEndpoint.schema.mof" />
+    <None Include="DSC\xSQL\DSCResources\MicrosoftAzure_xSqlLogin\MicrosoftAzure_xSqlLogin.psm1" />
+    <None Include="DSC\xSQL\DSCResources\MicrosoftAzure_xSqlLogin\MicrosoftAzure_xSqlLogin.schema.mof" />
+    <None Include="DSC\xSQL\DSCResources\MicrosoftAzure_xSqlNewAGDatabase\MicrosoftAzure_xSqlNewAGDatabase.psm1" />
+    <None Include="DSC\xSQL\DSCResources\MicrosoftAzure_xSqlNewAGDatabase\MicrosoftAzure_xSqlNewAGDatabase.schema.mof" />
+    <None Include="DSC\xSQL\DSCResources\MicrosoftAzure_xSQLServerSettings\MicrosoftAzure_xSQLServerSettings.psm1" />
+    <None Include="DSC\xSQL\DSCResources\MicrosoftAzure_xSQLServerSettings\MicrosoftAzure_xSQLServerSettings.schema.mof" />
+    <None Include="DSC\xSQL\DSCResources\MicrosoftAzure_xSQLServerStorageSettings\MicrosoftAzure_xSQLServerStorageSettings.psm1" />
+    <None Include="DSC\xSQL\DSCResources\MicrosoftAzure_xSQLServerStorageSettings\MicrosoftAzure_xSQLServerStorageSettings.schema.mof" />
+    <None Include="DSC\xSQL\DSCResources\MicrosoftAzure_xSqlServer\MicrosoftAzure_xSqlServer.psm1" />
+    <None Include="DSC\xSQL\DSCResources\MicrosoftAzure_xSqlServer\MicrosoftAzure_xSqlServer.schema.mof" />
+    <None Include="DSC\xSQL\DSCResources\MicrosoftAzure_xSqlTsqlEndpoint\MicrosoftAzure_xSqlTsqlEndpoint.psm1" />
+    <None Include="DSC\xSQL\DSCResources\MicrosoftAzure_xSqlTsqlEndpoint\MicrosoftAzure_xSqlTsqlEndpoint.schema.mof" />
+    <None Include="DSC\xSQL\xSql.psd1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}" />
+  </ItemGroup>
+  <Target Name="GetReferenceAssemblyPaths" />
+</Project>

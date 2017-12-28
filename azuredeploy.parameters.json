@@ -1,0 +1,69 @@
+{  
+   "$schema":"http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+   "contentVersion":"1.0.0.0",
+  "parameters": {
+    "adminUsername": {
+      "value": "alwaysonadmin"
+    },
+    "adminPassword": {
+      "value": "GEN-PASSWORD"
+    },
+    "sqlServerServiceAccountUserName": {
+      "value": "sqlservice"
+    },
+    "sqlServerServiceAccountPassword": {
+      "value": "GEN-PASSWORD"
+    },
+    "sqlStorageAccountType": {
+      "value": "Standard_LRS"
+    },
+    "dcStorageAccountType": {
+      "value": "Standard_LRS"
+    },
+    "adVMSize": {
+      "value": "Standard_A2_v2"
+    },
+    "sqlVMSize": {
+      "value": "Standard_A2_v2"
+    },
+    "witnessVMSize": {
+      "value": "Standard_A2_v2"
+    },
+    "domainName": {
+      "value": "contoso.local"
+    },
+    "virtualNetworkAddressRange": {
+      "value": "10.0.0.0/16"
+    },
+    "staticSubnet": {
+      "value": "10.0.0.0/24"
+    },
+    "lanSubnet": {
+      "value": "10.0.1.0/24"
+    },
+    "dmzSubnet": {
+      "value": "10.0.2.0/24"
+    },
+    "autoPatchingDay": {
+      "value": "Sunday"
+    },
+    "autoPatchingStartHour": {
+      "value": "2"
+    },
+    "sqlAOListenerPort": {
+      "value": "1433"
+    },
+    "sqlAOListenerName": {
+      "value": "alwayson-ag-listener"
+    },
+    "sqlServerVersion": {
+      "value": "SQL2016SP1-WS2016"
+    },
+    "_artifactsLocation": {
+      "value": null
+    },
+    "_artifactsLocationSasToken": {
+      "value": null
+    }
+  }
+}
