@@ -414,8 +414,8 @@
       "sqllbFEConfigID": "[concat(variables('ids').sqllbID,'/frontendIPConfigurations/',variables('lbSettings').sqlLBFE)]",
       "sqllbProbeID": "[concat(variables('ids').sqllbID,'/probes/',variables('SQLAOProbe'))]",
       "webBEAddressPoolID": "[concat(variables('ids').weblbID,'/backendAddressPools/',variables('lbSettings').webLBBE)]",
-      "weblbFEConfigID": "[concat(variables('ids').sqllbID,'/frontendIPConfigurations/',variables('lbSettings').webLBFE)]",
-      "weblbProbeID": "[concat(variables('ids').sqllbID,'/probes/',variables('webProbe'))]",
+      "weblbFEConfigID": "[concat(variables('ids').weblbID,'/frontendIPConfigurations/',variables('lbSettings').webLBFE)]",
+      "weblbProbeID": "[concat(variables('ids').weblbID,'/probes/',variables('webProbe'))]",
       "webLBIp": "[resourceId(resourceGroup().Name,'Microsoft.Network/publicIpAddresses', variables('webAddressName'))]"
     },
     "Monday": true,
