@@ -323,6 +323,17 @@
       },
       "defaultValue": "SQL2016SP1-WS2016"
     },
+    "sqlServerSku": {
+      "type": "string",
+      "allowedValues": [
+        "SQLDEV",
+        "Enterprise"
+      ],
+      "metadata": {
+        "description": "The Sql Server Version"
+      },
+      "defaultValue": "SQLDEV"
+    },
     "_artifactsLocation": {
       "type": "string",
       "metadata": {
@@ -771,7 +782,7 @@
             "value": "[variables('vmSettings').sqlImageOffer]"
           },
           "sqlImageSKU": {
-            "value": "SQLDEV"
+            "value": "[parameters('sqlServerSku')]"
           },
           "witnessVMSize": {
             "value": "[parameters('witnessVMSize')]"
