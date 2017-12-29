@@ -848,7 +848,7 @@
             "value": "[resourceGroup().location]"
           },
           "nicName": {
-            "value": "[variables('sqlwNicName')]"
+            "value": "[variables('adBDCNicName')]"
           },
           "ipConfigurations": {
             "value": [
