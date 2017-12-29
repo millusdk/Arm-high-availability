@@ -196,20 +196,21 @@
             "publisher": "Microsoft.Powershell",
             "type": "DSC",
             "typeHandlerVersion": "2.19",
-            "autoUpgradeMinorVersion": true,
+            "autoUpgradeMinorVersion": false,
             "settings": {
               "modulesURL": "[parameters('adPDCModulesURL')]",
               "configurationFunction": "[parameters('adPDCConfigurationFunction')]",
-              "configurationArguments": {
-                "domainName": "[parameters('domainName')]"
+              "properties": {
+                "domainName": "[parameters('domainName')]",
+                "adminCreds": {
+                  "userName": "[parameters('adminUsername')]",
+                  "password": "PrivateSettingsRef:adminPassword"
+                }
               }
             },
             "protectedSettings": {
-              "configurationArguments": {
-                "adminCreds": {
-                  "userName": "[parameters('adminUserName')]",
-                  "password": "[parameters('adminPassword')]"
-                }
+              "items": {
+                "adminPassword": "[parameters('adminPassword')]"
               }
             }
           }
