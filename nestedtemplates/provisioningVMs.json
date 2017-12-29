@@ -202,15 +202,14 @@
               "configurationFunction": "[parameters('adPDCConfigurationFunction')]",
               "properties": {
                 "domainName": "[parameters('domainName')]",
-                "adminCreds": {
-                  "userName": "[parameters('adminUsername')]",
-                  "password": "PrivateSettingsRef:adminPassword"
-                }
               }
             },
             "protectedSettings": {
-              "items": {
-                "adminPassword": "[parameters('adminPassword')]"
+              "configurationArguments": {
+                "adminCreds": {
+                  "userName": "[parameters('adminUserName')]",
+                  "password": "[parameters('adminPassword')]"
+                }
               }
             }
           }
