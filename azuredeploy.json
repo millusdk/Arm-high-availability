@@ -995,7 +995,7 @@
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2015-01-01",
       "dependsOn": [
-        "Microsoft.Resources/deployments/UpdatingSQLWNic"
+        "Microsoft.Resources/deployments/UpdatingSqlWNic"
       ],
       "properties": {
         "mode": "Incremental",
@@ -1045,7 +1045,7 @@
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2015-01-01",
       "dependsOn": [
-        "Microsoft.Resources/deployments/Updatingsql2Nic"
+        "Microsoft.Resources/deployments/Updatingsql01Nic"
       ],
       "properties": {
         "mode": "Incremental",
