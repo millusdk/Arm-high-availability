@@ -795,41 +795,41 @@
           }
         }
       }
+    },
+    {
+      "name": "UpdatingDNStoPrimaryADVM",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2015-01-01",
+      "dependsOn": [
+        "Microsoft.Resources/deployments/ProvisioningVMs"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[variables('configuration').vnetwithDNSTemplateURL]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "location": {
+            "value": "[resourceGroup().location]"
+          },
+          "virtualNetworkName": {
+            "value": "[variables('virtualNetworkName')]"
+          },
+          "virtualNetworkAddressRange": {
+            "value": "[parameters('virtualNetworkAddressRange')]"
+          },
+          "subnets": {
+            "value": "[variables('subnets')]"
+          },
+          "DNSServerAddress": {
+            "value": [
+              "[parameters('adPDCNICIPAddress')]"
+            ]
+          }
+        }
+      }
     }
-    //{
-    //  "name": "UpdatingDNStoPrimaryADVM",
-    //  "type": "Microsoft.Resources/deployments",
-    //  "apiVersion": "2015-01-01",
-    //  "dependsOn": [
-    //    "Microsoft.Resources/deployments/ProvisioningVMs"
-    //  ],
-    //  "properties": {
-    //    "mode": "Incremental",
-    //    "templateLink": {
-    //      "uri": "[variables('configuration').vnetwithDNSTemplateURL]",
-    //      "contentVersion": "1.0.0.0"
-    //    },
-    //    "parameters": {
-    //      "location": {
-    //        "value": "[resourceGroup().location]"
-    //      },
-    //      "virtualNetworkName": {
-    //        "value": "[variables('virtualNetworkName')]"
-    //      },
-    //      "virtualNetworkAddressRange": {
-    //        "value": "[parameters('virtualNetworkAddressRange')]"
-    //      },
-    //      "subnets": {
-    //        "value": "[variables('subnets')]"
-    //      },
-    //      "DNSServerAddress": {
-    //        "value": [
-    //          "[parameters('adPDCNICIPAddress')]"
-    //        ]
-    //      }
-    //    }
-    //  }
-    //},
     //{
     //  "name": "ConfiguringBackupADVM",
     //  "type": "Microsoft.Resources/deployments",
