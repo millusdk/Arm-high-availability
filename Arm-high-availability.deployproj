@@ -36,7 +36,7 @@
     <None Include="nestedtemplates\creatingNICS.json" />
     <None Include="nestedtemplates\nic.json" />
     <None Include="nestedtemplates\preparingSqlServer.json" />
-    <None Include="nestedtemplates\provisioningVM4.json" />
+    <None Include="nestedtemplates\provisioningVMs.json" />
     <None Include="nestedtemplates\publicip-rdp.json" />
     <None Include="nestedtemplates\setupLBs.json" />
     <None Include="nestedtemplates\storageAccountVirtualNetworkPublicIP.json" />

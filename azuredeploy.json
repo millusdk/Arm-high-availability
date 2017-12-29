@@ -457,7 +457,7 @@
       "setupLBsUrl": "[concat(parameters('_artifactsLocation'),'/nestedtemplates/setupLBs.json', parameters('_artifactsLocationSasToken'))]",
       "creatingNicsUrl": "[concat(parameters('_artifactsLocation'),'/nestedtemplates/creatingNICS.json', parameters('_artifactsLocationSasToken'))]",
       "storageAccountVirtualNetworkPublicIP": "[concat(parameters('_artifactsLocation'),'/nestedtemplates/storageAccountVirtualNetworkPublicIP.json', parameters('_artifactsLocationSasToken'))]",
-      "provisioningVMs": "[concat(parameters('_artifactsLocation'),'/nestedtemplates/provisioningVM4.json', parameters('_artifactsLocationSasToken'))]",
+      "provisioningVMs": "[concat(parameters('_artifactsLocation'),'/nestedtemplates/provisioningVMs.json', parameters('_artifactsLocationSasToken'))]",
       "configuringBackupADVM": "[concat(parameters('_artifactsLocation'),'/nestedtemplates/configuringBackupADVM.json', parameters('_artifactsLocationSasToken'))]",
       "preparingAlwaysOnSqlServer": "[concat(parameters('_artifactsLocation'),'/nestedtemplates/preparingSqlServer.json', parameters('_artifactsLocationSasToken'))]",
       "configuringAlwaysOn": "[concat(parameters('_artifactsLocation'),'/nestedtemplates/configuringAlwaysOn.json', parameters('_artifactsLocationSasToken'))]",
