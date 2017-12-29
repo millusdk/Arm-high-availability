@@ -24,7 +24,7 @@
          "type":"string"
       }
    },
-   "resources":[  
+   "resources":[
       {  
          "type":"Microsoft.Compute/virtualMachines/extensions",
          "name":"[concat(parameters('adBDCVMName'),'/CreateBDC')]",
