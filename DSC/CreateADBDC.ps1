@@ -53,14 +53,13 @@
 			DependsOn = "[WindowsFeature]ADDSInstall"
         }  
 
-        xWaitForADDomain DscForestWait 
-        { 
-            DomainName = $DomainName 
-            DomainUserCredential= $DomainCreds
-            RetryCount = $RetryCount 
-            RetryIntervalSec = $RetryIntervalSec
-			DependsOn = "[WindowsFeature]ADDSInstall"
-        } 
+        xComputer JoinDomain
+        {
+	      Name = $ComputerName
+          DomainName = $DomainName
+          Credential = $DomainCreds # Credential to join to domain
+          DependsOn = "[WindowsFeature]ADDSTools"
+        }
 
         xADDomainController BDC 
         { 
@@ -70,7 +69,7 @@
             DatabasePath = "F:\NTDS"
             LogPath = "F:\NTDS"
             SysvolPath = "F:\SYSVOL"
-			DependsOn = "[xWaitForADDomain]DscForestWait"
+			DependsOn = "[xComputer]JoinDomain"
         }
 	
 		Script script1
