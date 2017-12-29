@@ -829,45 +829,45 @@
           }
         }
       }
+    },
+    {
+      "name": "ConfiguringBackupADVM",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2015-01-01",
+      "dependsOn": [
+        "Microsoft.Resources/deployments/ProvisioningVMs"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[variables('configuration').configuringBackupADVM]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "location": {
+            "value": "[resourceGroup().location]"
+          },
+          "adBDCVMName": {
+            "value": "[variables('vmSettings').adBDCVMName]"
+          },
+          "adminUsername": {
+            "value": "[parameters('adminUsername')]"
+          },
+          "adminPassword": {
+            "value": "[parameters('adminPassword')]"
+          },
+          "domainName": {
+            "value": "[parameters('domainName')]"
+          },
+          "adBDCConfigurationFunction": {
+            "value": "[variables('configuration').adBDCConfigurationFunction]"
+          },
+          "adBDCModulesURL": {
+            "value": "[variables('configuration').adBDCModulesURL]"
+          }
+        }
+      }
     }
-    //{
-    //  "name": "ConfiguringBackupADVM",
-    //  "type": "Microsoft.Resources/deployments",
-    //  "apiVersion": "2015-01-01",
-    //  "dependsOn": [
-    //    "Microsoft.Resources/deployments/ProvisioningVMs"
-    //  ],
-    //  "properties": {
-    //    "mode": "Incremental",
-    //    "templateLink": {
-    //      "uri": "[variables('configuration').configuringBackupADVM]",
-    //      "contentVersion": "1.0.0.0"
-    //    },
-    //    "parameters": {
-    //      "location": {
-    //        "value": "[resourceGroup().location]"
-    //      },
-    //      "adBDCVMName": {
-    //        "value": "[variables('vmSettings').adBDCVMName]"
-    //      },
-    //      "adminUsername": {
-    //        "value": "[parameters('adminUsername')]"
-    //      },
-    //      "adminPassword": {
-    //        "value": "[parameters('adminPassword')]"
-    //      },
-    //      "domainName": {
-    //        "value": "[parameters('domainName')]"
-    //      },
-    //      "adBDCConfigurationFunction": {
-    //        "value": "[variables('configuration').adBDCConfigurationFunction]"
-    //      },
-    //      "adBDCModulesURL": {
-    //        "value": "[variables('configuration').adBDCModulesURL]"
-    //      }
-    //    }
-    //  }
-    //},
     //{
     //  "name": "UpdatingDNSwithBackupADVM",
     //  "type": "Microsoft.Resources/deployments",
