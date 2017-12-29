@@ -12,7 +12,7 @@
         [Int]$RetryIntervalSec=30
     ) 
     
-    Import-DscResource -ModuleName xActiveDirectory, xDisk, cDisk
+    Import-DscResource -ModuleName xActiveDirectory, xDisk, cDisk, xComputerManagement
     
     [System.Management.Automation.PSCredential ]$DomainCreds = New-Object System.Management.Automation.PSCredential ("${DomainName}\$($Admincreds.UserName)", $Admincreds.Password)
    
