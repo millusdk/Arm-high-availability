@@ -361,13 +361,13 @@
     "backupDCIPAddressName": "[concat(variables('baseName'), '-dc02-ip')]",
     "sql1AddressName": "[concat(variables('baseName'), '-sql01-ip')]",
     "sql2AddressName": "[concat(variables('baseName'), '-sql02-ip')]",
-    "webAddressName": "[concat(variables('baseName'), '-loadbalancer-web-ip')]",
+    "webAddressName": "[concat(variables('baseName'), '-web-loadbalancer-ip')]",
     "storageAccountNames": {
-      "dcStorageAccountName": "[replace(concat(variables('baseName'), 'storagedc'), '-', '')]",
-      "sqlStorageAccountName": "[replace(concat(variables('baseName'), 'storagesql'),'-', '')]",
-      "fswStorageAccountName": "[replace(concat(variables('baseName'), 'storagefsw'),'-', '')]",
-      "webStorageAccountName": "[replace(concat(variables('baseName'), 'storageweb'),'-', '')]",
-      "diagStorageAccountName": "[replace(concat(variables('baseName'), 'storagediag'),'-', '')]"
+      "dcStorageAccountName": "[replace(concat(variables('baseName'), 'dcstorage'), '-', '')]",
+      "sqlStorageAccountName": "[replace(concat(variables('baseName'), 'sqltorage'),'-', '')]",
+      "fswStorageAccountName": "[replace(concat(variables('baseName'), 'fswstorage'),'-', '')]",
+      "webStorageAccountName": "[replace(concat(variables('baseName'), 'webstorage'),'-', '')]",
+      "diagStorageAccountName": "[replace(concat(variables('baseName'), 'diagstorage'),'-', '')]"
     },
     "vmSettings": {
       "availabilitySets": {
@@ -390,7 +390,7 @@
       "windowsDiskSize": 128,
       "sqlDiskSize": 1000
     },
-    "sqlAOEPName": "[concat(variables('baseName'),'-ip-hadr')]",
+    "sqlAOEPName": "[concat(variables('baseName'),'-hadr-ip')]",
     "sharePath": "[concat(variables('baseName'),'-fsw')]",
     "clusterName": "[concat(variables('baseName'),'-fc')]",
     "adPDCNicName": "[concat(variables('vmSettings').adPDCVMName,'-nic')]",
