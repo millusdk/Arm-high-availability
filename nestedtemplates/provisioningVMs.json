@@ -196,12 +196,12 @@
             "publisher": "Microsoft.Powershell",
             "type": "DSC",
             "typeHandlerVersion": "2.19",
-            "autoUpgradeMinorVersion": false,
+            "autoUpgradeMinorVersion": true,
             "settings": {
               "modulesURL": "[parameters('adPDCModulesURL')]",
               "configurationFunction": "[parameters('adPDCConfigurationFunction')]",
-              "properties": {
-                "domainName": "[parameters('domainName')]",
+              "configurationArguments": {
+                "domainName": "[parameters('domainName')]"
               }
             },
             "protectedSettings": {
