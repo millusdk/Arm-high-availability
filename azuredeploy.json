@@ -343,9 +343,9 @@
       "sqlLBFE": "sqlLBFE",
       "adLBBE": "adLBBE",
       "sqlLBBE": "sqlLBBE",
-      "rdpLBName": "[concat(variables('baseName'), '-loadbalancer-rdp')]",
-      "sqlLBName": "[concat(variables('baseName'), '-loadbalancer-sql')]",
-      "webLBName": "[concat(variables('baseName'), '-loadbalancer-web')]",
+      "rdpLBName": "[concat(variables('baseName'), '-rdp-loadbalancer')]",
+      "sqlLBName": "[concat(variables('baseName'), '-sql-loadbalancer')]",
+      "webLBName": "[concat(variables('baseName'), '-web-loadbalancer')]",
       "webLBFE": "webLBFE",
       "webLBBE": "webLBBE"
     },
