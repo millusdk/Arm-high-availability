@@ -55,7 +55,7 @@
 
         xComputer JoinDomain
         {
-	      Name = $ComputerName
+	      Name = $ENV:COMPUTERNAME
           DomainName = $DomainName
           Credential = $DomainCreds # Credential to join to domain
           DependsOn = "[WindowsFeature]ADDSTools"
