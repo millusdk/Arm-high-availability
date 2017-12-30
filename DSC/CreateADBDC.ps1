@@ -76,7 +76,7 @@
 		{
       	    SetScript =  { 
 			$dnsFwdRule = Get-DnsServerForwarder
-			if ($dnsFwdRule) { Remove-DnsServerForwarder -IPAddress $dnsFwdRule.IPAddress -Force }
+			if ($dnsFwdRule -and $dnsFwdRule.IPAddress) { Remove-DnsServerForwarder -IPAddress $dnsFwdRule.IPAddress -Force }
 					Write-Verbose -Verbose "Removing DNS forwarding rule" 
             }
             GetScript =  { @{} }
