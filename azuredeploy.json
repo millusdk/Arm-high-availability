@@ -366,6 +366,7 @@
       "dmzSubnetName": "dmzSubnet"
     },
     "RDPNAT": "RDP",
+    "sqlAOAGName": "alwayson-ag",
     "SQLAOProbe": "SQLAlwaysOnEndPointProbe",
     "WebProbe": "WebEndPointProbe",
     "primaryDCIPAddressName": "[concat(variables('baseName'), '-dc01-ip')]",
@@ -1089,164 +1090,164 @@
           }
         }
       }
+    },
+    {
+      "name": "PreparingAlwaysOnSqlServer",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2015-01-01",
+      "dependsOn": [
+        "Microsoft.Resources/deployments/Updatingsql2Nic"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[variables('configuration').preparingAlwaysOnSqlServer]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "sqlVMName": {
+            "value": "[variables('vmSettings').sqlVMName]"
+          },
+          "location": {
+            "value": "[resourceGroup().location]"
+          },
+          "adminUsername": {
+            "value": "[parameters('adminUsername')]"
+          },
+          "adminPassword": {
+            "value": "[parameters('adminPassword')]"
+          },
+          "domainName": {
+            "value": "[parameters('domainName')]"
+          },
+          "sqlAOPrepareModulesURL": {
+            "value": "[variables('configuration').sqlAOPrepareModulesURL]"
+          },
+          "sqlAOPrepareConfigurationFunction": {
+            "value": "[variables('configuration').sqlAOPrepareConfigurationFunction]"
+          },
+          "sqlAOEPName": {
+            "value": "[variables('sqlAOEPName')]"
+          },
+          "sqlServerServiceAccountUserName": {
+            "value": "[parameters('sqlServerServiceAccountUserName')]"
+          },
+          "sqlServerServiceAccountPassword": {
+            "value": "[parameters('sqlServerServiceAccountPassword')]"
+          },
+          "sharePath": {
+            "value": "[variables('sharePath')]"
+          },
+          "adPDCVMName": {
+            "value": "[variables('vmSettings').adPDCVMName]"
+          },
+          "sqlwVMName": {
+            "value": "[variables('vmSettings').sqlwVMName]"
+          },
+          "fswModulesURL": {
+            "value": "[variables('configuration').fswModulesURL]"
+          },
+          "fswConfigurationFunction": {
+            "value": "[variables('configuration').fswConfigurationFunction]"
+          },
+          "autoPatchingDay": {
+            "value": "[parameters('autoPatchingDay')]"
+          },
+          "autoPatchingStartHour": {
+            "value": "[parameters('autoPatchingStartHour')]"
+          },
+          "autoPatchingEnable": {
+            "value": "[variables(parameters('autoPatchingDay'))]"
+          },
+          "numberOfDisks": {
+            "value": "4"
+          },
+          "workloadType": {
+            "value": "General"
+          }
+        }
+      }
+    },
+    {
+      "name": "ConfiguringAlwaysOn",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2015-01-01",
+      "dependsOn": [
+        "Microsoft.Resources/deployments/PreparingAlwaysOnSqlServer"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[variables('configuration').configuringAlwaysOn]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "sqlVMName": {
+            "value": "[variables('vmSettings').sqlVMName]"
+          },
+          "location": {
+            "value": "[resourceGroup().location]"
+          },
+          "adminUsername": {
+            "value": "[parameters('adminUsername')]"
+          },
+          "adminPassword": {
+            "value": "[parameters('adminPassword')]"
+          },
+          "domainName": {
+            "value": "[parameters('domainName')]"
+          },
+          "sqlAOEPName": {
+            "value": "[variables('sqlAOEPName')]"
+          },
+          "sqlServerServiceAccountUserName": {
+            "value": "[parameters('sqlServerServiceAccountUserName')]"
+          },
+          "sqlServerServiceAccountPassword": {
+            "value": "[parameters('sqlServerServiceAccountPassword')]"
+          },
+          "createClusterModulesURL": {
+            "value": "[variables('configuration').createClusterModulesURL]"
+          },
+          "createClusterConfigurationFunction": {
+            "value": "[variables('configuration').createClusterConfigurationFunction]"
+          },
+          "clusterName": {
+            "value": "[variables('clusterName')]"
+          },
+          "sharePath": {
+            "value": "[variables('sharePath')]"
+          },
+          "sqlAOAGName": {
+            "value": "[variables('sqlAOAGName')]"
+          },
+          "sqlAOListenerName": {
+            "value": "[parameters('sqlAOListenerName')]"
+          },
+          "sqlAOListenerPort": {
+            "value": "[parameters('sqlAOListenerPort')]"
+          },
+          "sqlLBName": {
+            "value": "[variables('lbSettings').sqlLBName]"
+          },
+          "sqlLBIPAddress": {
+            "value": "[parameters('sqlLBIPAddress')]"
+          },
+          "adPDCVMName": {
+            "value": "[variables('vmSettings').adPDCVMName]"
+          },
+          "sqlwVMName": {
+            "value": "[variables('vmSettings').sqlwVMName]"
+          },
+          "numberOfDisks": {
+            "value": "4"
+          },
+          "workloadType": {
+            "value": "General"
+          }
+        }
+      }
     }
-    //{
-    //  "name": "PreparingAlwaysOnSqlServer",
-    //  "type": "Microsoft.Resources/deployments",
-    //  "apiVersion": "2015-01-01",
-    //  "dependsOn": [
-    //    "Microsoft.Resources/deployments/Updatingsql2Nic"
-    //  ],
-    //  "properties": {
-    //    "mode": "Incremental",
-    //    "templateLink": {
-    //      "uri": "[variables('configuration').preparingAlwaysOnSqlServer]",
-    //      "contentVersion": "1.0.0.0"
-    //    },
-    //    "parameters": {
-    //      "sqlVMName": {
-    //        "value": "[variables('vmSettings').sqlVMName]"
-    //      },
-    //      "location": {
-    //        "value": "[resourceGroup().location]"
-    //      },
-    //      "adminUsername": {
-    //        "value": "[parameters('adminUsername')]"
-    //      },
-    //      "adminPassword": {
-    //        "value": "[parameters('adminPassword')]"
-    //      },
-    //      "domainName": {
-    //        "value": "[parameters('domainName')]"
-    //      },
-    //      "sqlAOPrepareModulesURL": {
-    //        "value": "[variables('configuration').sqlAOPrepareModulesURL]"
-    //      },
-    //      "sqlAOPrepareConfigurationFunction": {
-    //        "value": "[variables('configuration').sqlAOPrepareConfigurationFunction]"
-    //      },
-    //      "sqlAOEPName": {
-    //        "value": "[variables('sqlAOEPName')]"
-    //      },
-    //      "sqlServerServiceAccountUserName": {
-    //        "value": "[parameters('sqlServerServiceAccountUserName')]"
-    //      },
-    //      "sqlServerServiceAccountPassword": {
-    //        "value": "[parameters('sqlServerServiceAccountPassword')]"
-    //      },
-    //      "sharePath": {
-    //        "value": "[variables('sharePath')]"
-    //      },
-    //      "adPDCVMName": {
-    //        "value": "[variables('vmSettings').adPDCVMName]"
-    //      },
-    //      "sqlwVMName": {
-    //        "value": "[variables('vmSettings').sqlwVMName]"
-    //      },
-    //      "fswModulesURL": {
-    //        "value": "[variables('configuration').fswModulesURL]"
-    //      },
-    //      "fswConfigurationFunction": {
-    //        "value": "[variables('configuration').fswConfigurationFunction]"
-    //      },
-    //      "autoPatchingDay": {
-    //        "value": "[parameters('autoPatchingDay')]"
-    //      },
-    //      "autoPatchingStartHour": {
-    //        "value": "[parameters('autoPatchingStartHour')]"
-    //      },
-    //      "autoPatchingEnable": {
-    //        "value": "[variables(parameters('autoPatchingDay'))]"
-    //      },
-    //      "numberOfDisks": {
-    //        "value": "[parameters('numberOfSqlVMDisks')]"
-    //      },
-    //      "workloadType": {
-    //        "value": "[parameters('workloadType')]"
-    //      }
-    //    }
-    //  }
-    //},
-    //{
-    //  "name": "ConfiguringAlwaysOn",
-    //  "type": "Microsoft.Resources/deployments",
-    //  "apiVersion": "2015-01-01",
-    //  "dependsOn": [
-    //    "Microsoft.Resources/deployments/PreparingAlwaysOnSqlServer"
-    //  ],
-    //  "properties": {
-    //    "mode": "Incremental",
-    //    "templateLink": {
-    //      "uri": "[variables('configuration').configuringAlwaysOn]",
-    //      "contentVersion": "1.0.0.0"
-    //    },
-    //    "parameters": {
-    //      "sqlVMName": {
-    //        "value": "[variables('vmSettings').sqlVMName]"
-    //      },
-    //      "location": {
-    //        "value": "[resourceGroup().location]"
-    //      },
-    //      "adminUsername": {
-    //        "value": "[parameters('adminUsername')]"
-    //      },
-    //      "adminPassword": {
-    //        "value": "[parameters('adminPassword')]"
-    //      },
-    //      "domainName": {
-    //        "value": "[parameters('domainName')]"
-    //      },
-    //      "sqlAOEPName": {
-    //        "value": "[variables('sqlAOEPName')]"
-    //      },
-    //      "sqlServerServiceAccountUserName": {
-    //        "value": "[parameters('sqlServerServiceAccountUserName')]"
-    //      },
-    //      "sqlServerServiceAccountPassword": {
-    //        "value": "[parameters('sqlServerServiceAccountPassword')]"
-    //      },
-    //      "createClusterModulesURL": {
-    //        "value": "[variables('configuration').createClusterModulesURL]"
-    //      },
-    //      "createClusterConfigurationFunction": {
-    //        "value": "[variables('configuration').createClusterConfigurationFunction]"
-    //      },
-    //      "clusterName": {
-    //        "value": "[variables('clusterName')]"
-    //      },
-    //      "sharePath": {
-    //        "value": "[variables('sharePath')]"
-    //      },
-    //      "sqlAOAGName": {
-    //        "value": "[parameters('sqlAOAGName')]"
-    //      },
-    //      "sqlAOListenerName": {
-    //        "value": "[parameters('sqlAOListenerName')]"
-    //      },
-    //      "sqlAOListenerPort": {
-    //        "value": "[parameters('sqlAOListenerPort')]"
-    //      },
-    //      "sqlLBName": {
-    //        "value": "[variables('lbSettings').sqlLBName]"
-    //      },
-    //      "sqlLBIPAddress": {
-    //        "value": "[parameters('sqlLBIPAddress')]"
-    //      },
-    //      "adPDCVMName": {
-    //        "value": "[variables('vmSettings').adPDCVMName]"
-    //      },
-    //      "sqlwVMName": {
-    //        "value": "[variables('vmSettings').sqlwVMName]"
-    //      },
-    //      "numberOfDisks": {
-    //        "value": "[parameters('numberOfSqlVMDisks')]"
-    //      },
-    //      "workloadType": {
-    //        "value": "[parameters('workloadType')]"
-    //      }
-    //    }
-    //  }
-    //}
   ],
   "outputs": {}
 }
