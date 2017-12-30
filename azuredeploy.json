@@ -1020,7 +1020,7 @@
                     "id": "[variables('lanSubnetRef')]"
                   },
                   "publicIpAddress": {
-                    "id": "[resourceId(resourceGroup().Name,'Microsoft.Network/publicIpAddresses', variables('sql2AddressName'))]"
+                    "id": "[resourceId(resourceGroup().Name,'Microsoft.Network/publicIpAddresses', variables('sql1AddressName'))]"
                   },
                   "loadBalancerBackendAddressPools": [
                     {
@@ -1070,7 +1070,7 @@
                     "id": "[variables('lanSubnetRef')]"
                   },
                   "publicIpAddress": {
-                    "id": "[resourceId(resourceGroup().Name,'Microsoft.Network/publicIpAddresses', variables('sql1AddressName'))]"
+                    "id": "[resourceId(resourceGroup().Name,'Microsoft.Network/publicIpAddresses', variables('sql2AddressName'))]"
                   },
                   "loadBalancerBackendAddressPools": [
                     {
