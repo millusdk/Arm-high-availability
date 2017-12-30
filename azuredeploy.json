@@ -1096,7 +1096,7 @@
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2015-01-01",
       "dependsOn": [
-        "Microsoft.Resources/deployments/Updatingsql2Nic"
+        "Microsoft.Resources/deployments/Updatingsql02Nic"
       ],
       "properties": {
         "mode": "Incremental",
