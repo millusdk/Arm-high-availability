@@ -129,6 +129,9 @@
       "dependsOn": [
         "[concat('Microsoft.Compute/availabilitySets/',parameters('adAvailabilitySetName'))]"
       ],
+      "tags": {
+        "Role": "Domain controller"
+      },
       "properties": {
         "hardwareProfile": {
           "vmSize": "[parameters('adVMSize')]"
@@ -225,6 +228,9 @@
       "dependsOn": [
         "[concat('Microsoft.Compute/availabilitySets/',parameters('adAvailabilitySetName'))]"
       ],
+      "tags": {
+        "Role": "Domain controller"
+      },
       "properties": {
         "hardwareProfile": {
           "vmSize": "[parameters('adVMSize')]"
@@ -288,6 +294,9 @@
       "dependsOn": [
         "[concat('Microsoft.Compute/availabilitySets/',parameters('sqlAvailabilitySetName'))]"
       ],
+      "tags": {
+        "Role": "Sql file share witness"
+      },
       "properties": {
         "hardwareProfile": {
           "vmSize": "[parameters('witnessVMSize')]"
@@ -351,6 +360,9 @@
       "dependsOn": [
         "[concat('Microsoft.Compute/availabilitySets/',parameters('sqlAvailabilitySetName'))]"
       ],
+      "tags": {
+        "Role": "Sql server"
+      },
       "copy": {
         "name": "sqlvirtualMachineLoop",
         "count": 2
