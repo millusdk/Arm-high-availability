@@ -88,13 +88,18 @@ configuration CreateFailoverCluster
 
     Node localhost
     {
+		LocalConfigurationManager 
+        {
+            RebootNodeIfNeeded = $false
+        }
+
         xSqlCreateVirtualDisk CreateVirtualDisk
         {
             DriveSize = $NumberOfDisks
             NumberOfColumns = $NumberOfDisks
             BytesPerDisk = 1099511627776
             OptimizationType = $WorkloadType
-            RebootVirtualMachine = $RebootVirtualMachine
+            RebootVirtualMachine = $false
         }
 
         WindowsFeature FC
@@ -338,11 +343,10 @@ configuration CreateFailoverCluster
             DependsOn = "[xSqlNewAGDatabase]SQLAGDatabases"
         }
 
-        LocalConfigurationManager 
-        {
-            RebootNodeIfNeeded = $true
+		xPendingReboot RebootAfterPromotion {
+            Name = "Reboot after SQL always on preperation"
+            DependsOn = "[xSqlAvailabilityGroupListener]SqlAGListener"
         }
-
     }
 
 }

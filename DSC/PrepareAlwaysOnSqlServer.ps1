@@ -34,29 +34,27 @@ configuration PrepareAlwaysOnSqlServer
         [Int]$RetryIntervalSec=30
     )
 
-    Import-DscResource -ModuleName xComputerManagement,CDisk,xActiveDirectory,XDisk,xSql, xSQLServer, xSQLps,xNetworking
+    Import-DscResource -ModuleName xComputerManagement,CDisk,xActiveDirectory,XDisk,xSql, xSQLServer, xSQLps,xNetworking, xPendingReboot
     [System.Management.Automation.PSCredential]$DomainCreds = New-Object System.Management.Automation.PSCredential ("${DomainNetbiosName}\$($Admincreds.UserName)", $Admincreds.Password)
     [System.Management.Automation.PSCredential]$DomainFQDNCreds = New-Object System.Management.Automation.PSCredential ("${DomainName}\$($Admincreds.UserName)", $Admincreds.Password)
     [System.Management.Automation.PSCredential]$SQLCreds = New-Object System.Management.Automation.PSCredential ("${DomainNetbiosName}\$($SQLServicecreds.UserName)", $SQLServicecreds.Password)
-
-    $RebootVirtualMachine = $false
-
-    if ($DomainName)
-    {
-        $RebootVirtualMachine = $true
-    }
 
     WaitForSqlSetup
 
     Node localhost
     {
+		LocalConfigurationManager 
+        {
+            RebootNodeIfNeeded = $false
+        }
+
         xSqlCreateVirtualDisk CreateVirtualDisk
         {
             DriveSize = $NumberOfDisks
             NumberOfColumns = $NumberOfDisks
             BytesPerDisk = 1099511627776
             OptimizationType = $WorkloadType
-            RebootVirtualMachine = $RebootVirtualMachine
+            RebootVirtualMachine = $false
         }
 
         WindowsFeature FC
@@ -199,11 +197,10 @@ configuration PrepareAlwaysOnSqlServer
             DependsOn = "[xSqlLogin]AddSqlServerServiceAccountToSysadminServerRole"
         }
 
-        LocalConfigurationManager 
-        {
-            RebootNodeIfNeeded = $true
+		xPendingReboot RebootAfterPromotion {
+            Name = "Reboot after SQL always on preperation"
+            DependsOn = "[xSqlServer]ConfigureSqlServerWithAlwaysOn"
         }
-
     }
 }
 function Get-NetBIOSName
