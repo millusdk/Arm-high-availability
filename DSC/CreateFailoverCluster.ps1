@@ -223,27 +223,27 @@ configuration CreateFailoverCluster
             DependsOn = "[xSqlLogin]AddSqlServerServiceAccountToSysadminServerRole"
         }
 		
-        #xSQLServerStorageSettings AddSQLServerStorageSettings
-        #{
-        #    InstanceName = "MSSQLSERVER"
-        #    OptimizationType = $WorkloadType
-        #    DependsOn = "[xSqlTsqlEndpoint]AddSqlServerEndpoint"
-        #}
-		#
-        #xCluster FailoverCluster
-        #{
-        #    Name = $ClusterName
-        #    DomainAdministratorCredential = $DomainCreds
-        #    Nodes = $Nodes
-        #}
-		#
-        #xWaitForFileShareWitness WaitForFSW
-        #{
-        #    SharePath = $SharePath
-        #    DomainAdministratorCredential = $DomainCreds
-		#
-        #}
-		#
+        xSQLServerStorageSettings AddSQLServerStorageSettings
+        {
+            InstanceName = "MSSQLSERVER"
+            OptimizationType = $WorkloadType
+            DependsOn = "[xSqlTsqlEndpoint]AddSqlServerEndpoint"
+        }
+		
+        xCluster FailoverCluster
+        {
+            Name = $ClusterName
+            DomainAdministratorCredential = $DomainCreds
+            Nodes = $Nodes
+        }
+		
+        xWaitForFileShareWitness WaitForFSW
+        {
+            SharePath = $SharePath
+            DomainAdministratorCredential = $DomainCreds
+		
+        }
+		
         #xClusterQuorum FailoverClusterQuorum
         #{
         #    Name = $ClusterName
