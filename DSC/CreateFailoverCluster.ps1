@@ -273,56 +273,56 @@ configuration CreateFailoverCluster
             DomainName = $DomainName
             DependsOn = "[xSqlServer]ConfigureSqlServerWithAlwaysOn"
         }
-		#
-        #xSqlEndpoint SqlAlwaysOnEndpoint
-        #{
-        #    InstanceName = $env:COMPUTERNAME
-        #    Name = $SqlAlwaysOnEndpointName
-        #    PortNumber = 5022
-        #    AllowedUser = $SQLServiceCreds.UserName
-        #    SqlAdministratorCredential = $SQLCreds
-        #    DependsOn = "[xSqlServer]ConfigureSqlServerWithAlwaysOn"
-        #}
-		#
-        #xSqlServer ConfigureSqlServerSecondaryWithAlwaysOn
-        #{
-        #    InstanceName = $SecondaryReplica
-        #    SqlAdministratorCredential = $Admincreds
-        #    Hadr = "Enabled"
-        #    DomainAdministratorCredential = $DomainFQDNCreds
-        #    DependsOn = "[xCluster]FailoverCluster"
-        #}
-		#
-        #xSqlEndpoint SqlSecondaryAlwaysOnEndpoint
-        #{
-        #    InstanceName = $SecondaryReplica
-        #    Name = $SqlAlwaysOnEndpointName
-        #    PortNumber = 5022
-        #    AllowedUser = $SQLServiceCreds.UserName
-        #    SqlAdministratorCredential = $SQLCreds
-	    #DependsOn="[xSqlServer]ConfigureSqlServerSecondaryWithAlwaysOn"
-        #}
-        #
-        #xSqlAvailabilityGroup SqlAG
-        #{
-        #    Name = $SqlAlwaysOnAvailabilityGroupName
-        #    ClusterName = $ClusterName
-        #    InstanceName = $env:COMPUTERNAME
-        #    PortNumber = 5022
-        #    DomainCredential =$DomainCreds
-        #    SqlAdministratorCredential = $Admincreds
-	    #    DependsOn="[xSqlEndpoint]SqlSecondaryAlwaysOnEndpoint"
-        #}
-        #   
-        #xSqlNewAGDatabase SQLAGDatabases
-        #{
-        #    SqlAlwaysOnAvailabilityGroupName = $SqlAlwaysOnAvailabilityGroupName
-        #    DatabaseNames = $DatabaseNames
-        #    PrimaryReplica = $PrimaryReplica
-        #    SecondaryReplica = $SecondaryReplica
-        #    SqlAdministratorCredential = $SQLCreds
-	    #    DependsOn = "[xSqlAvailabilityGroup]SqlAG"
-        #}
+		
+        xSqlEndpoint SqlAlwaysOnEndpoint
+        {
+            InstanceName = $env:COMPUTERNAME
+            Name = $SqlAlwaysOnEndpointName
+            PortNumber = 5022
+            AllowedUser = $SQLServiceCreds.UserName
+            SqlAdministratorCredential = $SQLCreds
+            DependsOn = "[xSqlServer]ConfigureSqlServerWithAlwaysOn"
+        }
+		
+        xSqlServer ConfigureSqlServerSecondaryWithAlwaysOn
+        {
+            InstanceName = $SecondaryReplica
+            SqlAdministratorCredential = $Admincreds
+            Hadr = "Enabled"
+            DomainAdministratorCredential = $DomainFQDNCreds
+            DependsOn = "[xCluster]FailoverCluster"
+        }
+		
+        xSqlEndpoint SqlSecondaryAlwaysOnEndpoint
+        {
+            InstanceName = $SecondaryReplica
+            Name = $SqlAlwaysOnEndpointName
+            PortNumber = 5022
+            AllowedUser = $SQLServiceCreds.UserName
+            SqlAdministratorCredential = $SQLCreds
+	    DependsOn="[xSqlServer]ConfigureSqlServerSecondaryWithAlwaysOn"
+        }
+        
+        xSqlAvailabilityGroup SqlAG
+        {
+            Name = $SqlAlwaysOnAvailabilityGroupName
+            ClusterName = $ClusterName
+            InstanceName = $env:COMPUTERNAME
+            PortNumber = 5022
+            DomainCredential =$DomainCreds
+            SqlAdministratorCredential = $Admincreds
+	        DependsOn="[xSqlEndpoint]SqlSecondaryAlwaysOnEndpoint"
+        }
+           
+        xSqlNewAGDatabase SQLAGDatabases
+        {
+            SqlAlwaysOnAvailabilityGroupName = $SqlAlwaysOnAvailabilityGroupName
+            DatabaseNames = $DatabaseNames
+            PrimaryReplica = $PrimaryReplica
+            SecondaryReplica = $SecondaryReplica
+            SqlAdministratorCredential = $SQLCreds
+	        DependsOn = "[xSqlAvailabilityGroup]SqlAG"
+        }
 		#
         #xSqlAvailabilityGroupListener SqlAGListener
         #{
