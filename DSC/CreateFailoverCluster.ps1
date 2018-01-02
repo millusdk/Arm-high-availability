@@ -251,18 +251,18 @@ configuration CreateFailoverCluster
             DomainAdministratorCredential = $DomainCreds
         }
 		
-        xSqlServer ConfigureSqlServerWithAlwaysOn
-        {
-            InstanceName = $env:COMPUTERNAME
-            SqlAdministratorCredential = $SQLCreds
-            ServiceCredential = $SQLCreds
-            Hadr = "Enabled"
-            MaxDegreeOfParallelism = 1
-            FilePath = "F:\DATA"
-            LogPath = "F:\LOG"
-            DomainAdministratorCredential = $DomainCreds
-            DependsOn = "[xCluster]FailoverCluster"
-        }
+        #xSqlServer ConfigureSqlServerWithAlwaysOn
+        #{
+        #    InstanceName = $env:COMPUTERNAME
+        #    SqlAdministratorCredential = $SQLCreds
+        #    ServiceCredential = $SQLCreds
+        #    Hadr = "Enabled"
+        #    MaxDegreeOfParallelism = 1
+        #    FilePath = "F:\DATA"
+        #    LogPath = "F:\LOG"
+        #    DomainAdministratorCredential = $DomainCreds
+        #    DependsOn = "[xCluster]FailoverCluster"
+        #}
 		
         #xSQLAddListenerIPToDNS AddLoadBalancer
         #{
@@ -281,17 +281,17 @@ configuration CreateFailoverCluster
             PortNumber = 5022
             AllowedUser = $SQLServiceCreds.UserName
             SqlAdministratorCredential = $SQLCreds
-            DependsOn = "[xSqlServer]ConfigureSqlServerWithAlwaysOn"
+            DependsOn = "[xClusterQuorum]FailoverClusterQuorum"
         }
 		
-        xSqlServer ConfigureSqlServerSecondaryWithAlwaysOn
-        {
-            InstanceName = $SecondaryReplica
-            SqlAdministratorCredential = $SQLCreds
-            Hadr = "Enabled"
-            DomainAdministratorCredential = $DomainCreds
-            DependsOn = "[xCluster]FailoverCluster"
-        }
+        #xSqlServer ConfigureSqlServerSecondaryWithAlwaysOn
+        #{
+        #    InstanceName = $SecondaryReplica
+        #    SqlAdministratorCredential = $SQLCreds
+        #    Hadr = "Enabled"
+        #    DomainAdministratorCredential = $DomainCreds
+        #    DependsOn = "[xCluster]FailoverCluster"
+        #}
 		
         xSqlEndpoint SqlSecondaryAlwaysOnEndpoint
         {
