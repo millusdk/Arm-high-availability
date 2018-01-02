@@ -264,15 +264,15 @@ configuration CreateFailoverCluster
             DependsOn = "[xCluster]FailoverCluster"
         }
 		
-        xSQLAddListenerIPToDNS AddLoadBalancer
-        {
-            LBName = $LBName
-            Credential = $DomainCreds
-            LBAddress = $LBAddress
-            DNSServerName = $DNSServerName
-            DomainName = $DomainName
-            DependsOn = "[xSqlServer]ConfigureSqlServerWithAlwaysOn"
-        }
+        #xSQLAddListenerIPToDNS AddLoadBalancer
+        #{
+        #    LBName = $LBName
+        #    Credential = $DomainCreds
+        #    LBAddress = $LBAddress
+        #    DNSServerName = $DNSServerName
+        #    DomainName = $DomainName
+        #    DependsOn = "[xSqlServer]ConfigureSqlServerWithAlwaysOn"
+        #}
 		
         xSqlEndpoint SqlAlwaysOnEndpoint
         {
