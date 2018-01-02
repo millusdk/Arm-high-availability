@@ -205,16 +205,16 @@ configuration CreateFailoverCluster
             DependsOn = "[xSqlLogin]AddDomainAdminAccountToSysadminServerRole"
         }
 		
-        #xSqlLogin AddSqlServerServiceAccountToSysadminServerRole
-        #{
-        #    Name = $SQLCreds.UserName
-        #    LoginType = "WindowsUser"
-        #    ServerRoles = "sysadmin"
-        #    Enabled = $true
-        #    Credential = $Admincreds
-        #    DependsOn = "[xADUser]CreateSqlServerServiceAccount"
-        #}
-        #
+        xSqlLogin AddSqlServerServiceAccountToSysadminServerRole
+        {
+            Name = $SQLCreds.UserName
+            LoginType = "WindowsUser"
+            ServerRoles = "sysadmin"
+            Enabled = $true
+            Credential = $Admincreds
+            DependsOn = "[xADUser]CreateSqlServerServiceAccount"
+        }
+        
         #xSqlTsqlEndpoint AddSqlServerEndpoint
         #{
         #    InstanceName = "MSSQLSERVER"
