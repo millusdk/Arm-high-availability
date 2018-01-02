@@ -195,16 +195,16 @@ configuration CreateFailoverCluster
             Credential = $Admincreds
         }
 		
-        #xADUser CreateSqlServerServiceAccount
-        #{
-        #    DomainAdministratorCredential = $DomainCreds
-        #    DomainName = $DomainName
-        #    UserName = $SQLServicecreds.UserName
-        #    Password = $SQLServicecreds
-        #    Ensure = "Present"
-        #    DependsOn = "[xSqlLogin]AddDomainAdminAccountToSysadminServerRole"
-        #}
-		#
+        xADUser CreateSqlServerServiceAccount
+        {
+            DomainAdministratorCredential = $DomainCreds
+            DomainName = $DomainName
+            UserName = $SQLServicecreds.UserName
+            Password = $SQLServicecreds
+            Ensure = "Present"
+            DependsOn = "[xSqlLogin]AddDomainAdminAccountToSysadminServerRole"
+        }
+		
         #xSqlLogin AddSqlServerServiceAccountToSysadminServerRole
         #{
         #    Name = $SQLCreds.UserName
