@@ -260,7 +260,7 @@ configuration CreateFailoverCluster
             MaxDegreeOfParallelism = 1
             FilePath = "F:\DATA"
             LogPath = "F:\LOG"
-            DomainAdministratorCredential = $DomainFQDNCreds
+            DomainAdministratorCredential = $DomainCreds
             DependsOn = "[xCluster]FailoverCluster"
         }
 		
