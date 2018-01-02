@@ -215,14 +215,14 @@ configuration CreateFailoverCluster
             DependsOn = "[xADUser]CreateSqlServerServiceAccount"
         }
         
-        #xSqlTsqlEndpoint AddSqlServerEndpoint
-        #{
-        #    InstanceName = "MSSQLSERVER"
-        #    PortNumber = $DatabaseEnginePort
-        #    SqlAdministratorCredential = $Admincreds
-        #    DependsOn = "[xSqlLogin]AddSqlServerServiceAccountToSysadminServerRole"
-        #}
-		#
+        xSqlTsqlEndpoint AddSqlServerEndpoint
+        {
+            InstanceName = "MSSQLSERVER"
+            PortNumber = $DatabaseEnginePort
+            SqlAdministratorCredential = $Admincreds
+            DependsOn = "[xSqlLogin]AddSqlServerServiceAccountToSysadminServerRole"
+        }
+		
         #xSQLServerStorageSettings AddSQLServerStorageSettings
         #{
         #    InstanceName = "MSSQLSERVER"
