@@ -244,35 +244,35 @@ configuration CreateFailoverCluster
 		
         }
 		
-        #xClusterQuorum FailoverClusterQuorum
-        #{
-        #    Name = $ClusterName
-        #    SharePath = $SharePath
-        #    DomainAdministratorCredential = $DomainCreds
-        #}
-		#
-        #xSqlServer ConfigureSqlServerWithAlwaysOn
-        #{
-        #    InstanceName = $env:COMPUTERNAME
-        #    SqlAdministratorCredential = $Admincreds
-        #    ServiceCredential = $SQLCreds
-        #    Hadr = "Enabled"
-        #    MaxDegreeOfParallelism = 1
-        #    FilePath = "F:\DATA"
-        #    LogPath = "F:\LOG"
-        #    DomainAdministratorCredential = $DomainFQDNCreds
-        #    DependsOn = "[xCluster]FailoverCluster"
-        #}
-		#
-        #xSQLAddListenerIPToDNS AddLoadBalancer
-        #{
-        #    LBName = $LBName
-        #    Credential = $DomainCreds
-        #    LBAddress = $LBAddress
-        #    DNSServerName = $DNSServerName
-        #    DomainName = $DomainName
-        #    DependsOn = "[xSqlServer]ConfigureSqlServerWithAlwaysOn"
-        #}
+        xClusterQuorum FailoverClusterQuorum
+        {
+            Name = $ClusterName
+            SharePath = $SharePath
+            DomainAdministratorCredential = $DomainCreds
+        }
+		
+        xSqlServer ConfigureSqlServerWithAlwaysOn
+        {
+            InstanceName = $env:COMPUTERNAME
+            SqlAdministratorCredential = $Admincreds
+            ServiceCredential = $SQLCreds
+            Hadr = "Enabled"
+            MaxDegreeOfParallelism = 1
+            FilePath = "F:\DATA"
+            LogPath = "F:\LOG"
+            DomainAdministratorCredential = $DomainFQDNCreds
+            DependsOn = "[xCluster]FailoverCluster"
+        }
+		
+        xSQLAddListenerIPToDNS AddLoadBalancer
+        {
+            LBName = $LBName
+            Credential = $DomainCreds
+            LBAddress = $LBAddress
+            DNSServerName = $DNSServerName
+            DomainName = $DomainName
+            DependsOn = "[xSqlServer]ConfigureSqlServerWithAlwaysOn"
+        }
 		#
         #xSqlEndpoint SqlAlwaysOnEndpoint
         #{
