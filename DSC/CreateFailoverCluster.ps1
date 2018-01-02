@@ -144,48 +144,48 @@ configuration CreateFailoverCluster
 	        DependsOn = "[xWaitForADDomain]DscForestWait"
         }
 		
-        #xFirewall DatabaseEngineFirewallRule
-        #{
-        #    Direction = "Inbound"
-        #    Name = "SQL-Server-Database-Engine-TCP-In"
-        #    DisplayName = "SQL Server Database Engine (TCP-In)"
-        #    Description = "Inbound rule for SQL Server to allow TCP traffic for the Database Engine."
-        #    DisplayGroup = "SQL Server"
-        #    State = "Enabled"
-        #    Access = "Allow"
-        #    Protocol = "TCP"
-        #    LocalPort = $DatabaseEnginePort -as [String]
-        #    Ensure = "Present"
-        #}
-		#
-        #xFirewall DatabaseMirroringFirewallRule
-        #{
-        #    Direction = "Inbound"
-        #    Name = "SQL-Server-Database-Mirroring-TCP-In"
-        #    DisplayName = "SQL Server Database Mirroring (TCP-In)"
-        #    Description = "Inbound rule for SQL Server to allow TCP traffic for the Database Mirroring."
-        #    DisplayGroup = "SQL Server"
-        #    State = "Enabled"
-        #    Access = "Allow"
-        #    Protocol = "TCP"
-        #    LocalPort = "5022"
-        #    Ensure = "Present"
-        #}
-		#
-        #xFirewall ListenerFirewallRule
-        #{
-        #    Direction = "Inbound"
-        #    Name = "SQL-Server-Availability-Group-Listener-TCP-In"
-        #    DisplayName = "SQL Server Availability Group Listener (TCP-In)"
-        #    Description = "Inbound rule for SQL Server to allow TCP traffic for the Availability Group listener."
-        #    DisplayGroup = "SQL Server"
-        #    State = "Enabled"
-        #    Access = "Allow"
-        #    Protocol = "TCP"
-        #    LocalPort = "59999"
-        #    Ensure = "Present"
-        #}
-		#
+        xFirewall DatabaseEngineFirewallRule
+        {
+            Direction = "Inbound"
+            Name = "SQL-Server-Database-Engine-TCP-In"
+            DisplayName = "SQL Server Database Engine (TCP-In)"
+            Description = "Inbound rule for SQL Server to allow TCP traffic for the Database Engine."
+            DisplayGroup = "SQL Server"
+            State = "Enabled"
+            Access = "Allow"
+            Protocol = "TCP"
+            LocalPort = $DatabaseEnginePort -as [String]
+            Ensure = "Present"
+        }
+		
+        xFirewall DatabaseMirroringFirewallRule
+        {
+            Direction = "Inbound"
+            Name = "SQL-Server-Database-Mirroring-TCP-In"
+            DisplayName = "SQL Server Database Mirroring (TCP-In)"
+            Description = "Inbound rule for SQL Server to allow TCP traffic for the Database Mirroring."
+            DisplayGroup = "SQL Server"
+            State = "Enabled"
+            Access = "Allow"
+            Protocol = "TCP"
+            LocalPort = "5022"
+            Ensure = "Present"
+        }
+		
+        xFirewall ListenerFirewallRule
+        {
+            Direction = "Inbound"
+            Name = "SQL-Server-Availability-Group-Listener-TCP-In"
+            DisplayName = "SQL Server Availability Group Listener (TCP-In)"
+            Description = "Inbound rule for SQL Server to allow TCP traffic for the Availability Group listener."
+            DisplayGroup = "SQL Server"
+            State = "Enabled"
+            Access = "Allow"
+            Protocol = "TCP"
+            LocalPort = "59999"
+            Ensure = "Present"
+        }
+		
         #xSqlLogin AddDomainAdminAccountToSysadminServerRole
         #{
         #    Name = $DomainCreds.UserName
