@@ -219,7 +219,7 @@ configuration CreateFailoverCluster
         {
             InstanceName = "MSSQLSERVER"
             PortNumber = $DatabaseEnginePort
-            SqlAdministratorCredential = $Admincreds
+            SqlAdministratorCredential = $SQLCreds
             DependsOn = "[xSqlLogin]AddSqlServerServiceAccountToSysadminServerRole"
         }
 		
@@ -254,7 +254,7 @@ configuration CreateFailoverCluster
         xSqlServer ConfigureSqlServerWithAlwaysOn
         {
             InstanceName = $env:COMPUTERNAME
-            SqlAdministratorCredential = $Admincreds
+            SqlAdministratorCredential = $SQLCreds
             ServiceCredential = $SQLCreds
             Hadr = "Enabled"
             MaxDegreeOfParallelism = 1
@@ -287,9 +287,9 @@ configuration CreateFailoverCluster
         xSqlServer ConfigureSqlServerSecondaryWithAlwaysOn
         {
             InstanceName = $SecondaryReplica
-            SqlAdministratorCredential = $Admincreds
+            SqlAdministratorCredential = $SQLCreds
             Hadr = "Enabled"
-            DomainAdministratorCredential = $DomainFQDNCreds
+            DomainAdministratorCredential = $DomainCreds
             DependsOn = "[xCluster]FailoverCluster"
         }
 		
@@ -310,7 +310,7 @@ configuration CreateFailoverCluster
             InstanceName = $env:COMPUTERNAME
             PortNumber = 5022
             DomainCredential =$DomainCreds
-            SqlAdministratorCredential = $Admincreds
+            SqlAdministratorCredential = $SQLCreds
 	        DependsOn="[xSqlEndpoint]SqlSecondaryAlwaysOnEndpoint"
         }
            
