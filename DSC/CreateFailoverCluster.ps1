@@ -101,32 +101,32 @@ configuration CreateFailoverCluster
             OptimizationType = $WorkloadType
             RebootVirtualMachine = $false
         }
-		#
-        #WindowsFeature FC
-        #{
-        #    Name = "Failover-Clustering"
-        #    Ensure = "Present"
-        #}
-		#
-		#WindowsFeature FailoverClusterTools 
-        #{ 
-        #    Ensure = "Present" 
-        #    Name = "RSAT-Clustering-Mgmt"
-		#	DependsOn = "[WindowsFeature]FC"
-        #} 
-		#
-        #WindowsFeature FCPS
-        #{
-        #    Name = "RSAT-Clustering-PowerShell"
-        #    Ensure = "Present"
-        #}
-		#
-        #WindowsFeature ADPS
-        #{
-        #    Name = "RSAT-AD-PowerShell"
-        #    Ensure = "Present"
-        #}
-		#
+		
+        WindowsFeature FC
+        {
+            Name = "Failover-Clustering"
+            Ensure = "Present"
+        }
+		
+		WindowsFeature FailoverClusterTools 
+        { 
+            Ensure = "Present" 
+            Name = "RSAT-Clustering-Mgmt"
+			DependsOn = "[WindowsFeature]FC"
+        } 
+		
+        WindowsFeature FCPS
+        {
+            Name = "RSAT-Clustering-PowerShell"
+            Ensure = "Present"
+        }
+		
+        WindowsFeature ADPS
+        {
+            Name = "RSAT-AD-PowerShell"
+            Ensure = "Present"
+        }
+		
         #xWaitForADDomain DscForestWait 
         #{ 
         #    DomainName = $DomainName 
