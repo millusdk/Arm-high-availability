@@ -93,14 +93,14 @@ configuration CreateFailoverCluster
             RebootNodeIfNeeded = $false
         }
 
-        #xSqlCreateVirtualDisk CreateVirtualDisk
-        #{
-        #    DriveSize = $NumberOfDisks
-        #    NumberOfColumns = $NumberOfDisks
-        #    BytesPerDisk = 1099511627776
-        #    OptimizationType = $WorkloadType
-        #    RebootVirtualMachine = $false
-        #}
+        xSqlCreateVirtualDisk CreateVirtualDisk
+        {
+            DriveSize = $NumberOfDisks
+            NumberOfColumns = $NumberOfDisks
+            BytesPerDisk = 1099511627776
+            OptimizationType = $WorkloadType
+            RebootVirtualMachine = $false
+        }
 		#
         #WindowsFeature FC
         #{
