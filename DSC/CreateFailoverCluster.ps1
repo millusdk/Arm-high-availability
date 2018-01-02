@@ -127,23 +127,23 @@ configuration CreateFailoverCluster
             Ensure = "Present"
         }
 		
-        #xWaitForADDomain DscForestWait 
-        #{ 
-        #    DomainName = $DomainName 
-        #    DomainUserCredential= $DomainCreds
-        #    RetryCount = $RetryCount 
-        #    RetryIntervalSec = $RetryIntervalSec 
-	    #    DependsOn = "[WindowsFeature]ADPS"
-        #}
-        #
-        #xComputer DomainJoin
-        #{
-        #    Name = $env:COMPUTERNAME
-        #    DomainName = $DomainName
-        #    Credential = $DomainCreds
-	    #    DependsOn = "[xWaitForADDomain]DscForestWait"
-        #}
-		#
+        xWaitForADDomain DscForestWait 
+        { 
+            DomainName = $DomainName 
+            DomainUserCredential= $DomainCreds
+            RetryCount = $RetryCount 
+            RetryIntervalSec = $RetryIntervalSec 
+	        DependsOn = "[WindowsFeature]ADPS"
+        }
+        
+        xComputer DomainJoin
+        {
+            Name = $env:COMPUTERNAME
+            DomainName = $DomainName
+            Credential = $DomainCreds
+	        DependsOn = "[xWaitForADDomain]DscForestWait"
+        }
+		
         #xFirewall DatabaseEngineFirewallRule
         #{
         #    Direction = "Inbound"
