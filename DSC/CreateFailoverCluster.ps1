@@ -186,15 +186,15 @@ configuration CreateFailoverCluster
             Ensure = "Present"
         }
 		
-        #xSqlLogin AddDomainAdminAccountToSysadminServerRole
-        #{
-        #    Name = $DomainCreds.UserName
-        #    LoginType = "WindowsUser"
-        #    ServerRoles = "sysadmin"
-        #    Enabled = $true
-        #    Credential = $Admincreds
-        #}
-		#
+        xSqlLogin AddDomainAdminAccountToSysadminServerRole
+        {
+            Name = $DomainCreds.UserName
+            LoginType = "WindowsUser"
+            ServerRoles = "sysadmin"
+            Enabled = $true
+            Credential = $Admincreds
+        }
+		
         #xADUser CreateSqlServerServiceAccount
         #{
         #    DomainAdministratorCredential = $DomainCreds
