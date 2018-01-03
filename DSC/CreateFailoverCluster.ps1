@@ -274,15 +274,15 @@ configuration CreateFailoverCluster
         #    DependsOn = "[xSqlServer]ConfigureSqlServerWithAlwaysOn"
         #}
 		
-        #xSqlEndpoint SqlAlwaysOnEndpoint
-        #{
-        #    InstanceName = $env:COMPUTERNAME
-        #    Name = $SqlAlwaysOnEndpointName
-        #    PortNumber = 5022
-        #    AllowedUser = $SQLServiceCreds.UserName
-        #    SqlAdministratorCredential = $SQLCreds
-        #    DependsOn = "[xClusterQuorum]FailoverClusterQuorum"
-        #}
+        xSqlEndpoint SqlAlwaysOnEndpoint
+        {
+            InstanceName = $env:COMPUTERNAME
+            Name = $SqlAlwaysOnEndpointName
+            PortNumber = 5022
+            AllowedUser = $SQLServiceCreds.UserName
+            SqlAdministratorCredential = $SQLCreds
+            DependsOn = "[xClusterQuorum]FailoverClusterQuorum"
+        }
 		
         #xSqlServer ConfigureSqlServerSecondaryWithAlwaysOn
         #{
