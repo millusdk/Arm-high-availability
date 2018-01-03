@@ -251,47 +251,47 @@ configuration CreateFailoverCluster
             DomainAdministratorCredential = $DomainCreds
         }
 		
-        #xSqlServer ConfigureSqlServerWithAlwaysOn
-        #{
-        #    InstanceName = $env:COMPUTERNAME
-        #    SqlAdministratorCredential = $SQLCreds
-        #    ServiceCredential = $SQLCreds
-        #    Hadr = "Enabled"
-        #    MaxDegreeOfParallelism = 1
-        #    FilePath = "F:\DATA"
-        #    LogPath = "F:\LOG"
-        #    DomainAdministratorCredential = $DomainCreds
-        #    DependsOn = "[xCluster]FailoverCluster"
-        #}
-		
-        #xSQLAddListenerIPToDNS AddLoadBalancer
-        #{
-        #    LBName = $LBName
-        #    Credential = $DomainCreds
-        #    LBAddress = $LBAddress
-        #    DNSServerName = $DNSServerName
-        #    DomainName = $DomainName
-        #    DependsOn = "[xSqlServer]ConfigureSqlServerWithAlwaysOn"
-        #}
-		
-        xSqlEndpoint SqlAlwaysOnEndpoint
+        xSqlServer ConfigureSqlServerWithAlwaysOn
         {
             InstanceName = $env:COMPUTERNAME
-            Name = $SqlAlwaysOnEndpointName
-            PortNumber = 5022
-            AllowedUser = $SQLServiceCreds.UserName
             SqlAdministratorCredential = $SQLCreds
-            DependsOn = "[xClusterQuorum]FailoverClusterQuorum"
+            ServiceCredential = $SQLCreds
+            Hadr = "Enabled"
+            MaxDegreeOfParallelism = 1
+            FilePath = "F:\DATA"
+            LogPath = "F:\LOG"
+            DomainAdministratorCredential = $DomainCreds
+            DependsOn = "[xCluster]FailoverCluster"
         }
 		
-        #xSqlServer ConfigureSqlServerSecondaryWithAlwaysOn
+        xSQLAddListenerIPToDNS AddLoadBalancer
+        {
+            LBName = $LBName
+            Credential = $DomainCreds
+            LBAddress = $LBAddress
+            DNSServerName = $DNSServerName
+            DomainName = $DomainName
+            DependsOn = "[xSqlServer]ConfigureSqlServerWithAlwaysOn"
+        }
+		
+        #xSqlEndpoint SqlAlwaysOnEndpoint
         #{
-        #    InstanceName = $SecondaryReplica
+        #    InstanceName = $env:COMPUTERNAME
+        #    Name = $SqlAlwaysOnEndpointName
+        #    PortNumber = 5022
+        #    AllowedUser = $SQLServiceCreds.UserName
         #    SqlAdministratorCredential = $SQLCreds
-        #    Hadr = "Enabled"
-        #    DomainAdministratorCredential = $DomainCreds
-        #    DependsOn = "[xCluster]FailoverCluster"
+        #    DependsOn = "[xClusterQuorum]FailoverClusterQuorum"
         #}
+		
+        xSqlServer ConfigureSqlServerSecondaryWithAlwaysOn
+        {
+            InstanceName = $SecondaryReplica
+            SqlAdministratorCredential = $SQLCreds
+            Hadr = "Enabled"
+            DomainAdministratorCredential = $DomainCreds
+            DependsOn = "[xCluster]FailoverCluster"
+        }
 		
         #xSqlEndpoint SqlSecondaryAlwaysOnEndpoint
         #{
@@ -303,45 +303,45 @@ configuration CreateFailoverCluster
 	    #    DependsOn="[xSqlServer]ConfigureSqlServerSecondaryWithAlwaysOn"
         #}
         
-        #xSqlAvailabilityGroup SqlAG
-        #{
-        #    Name = $SqlAlwaysOnAvailabilityGroupName
-        #    ClusterName = $ClusterName
-        #    InstanceName = $env:COMPUTERNAME
-        #    PortNumber = 5022
-        #    DomainCredential =$DomainCreds
-        #    SqlAdministratorCredential = $SQLCreds
-	    #    DependsOn="[xSqlEndpoint]SqlSecondaryAlwaysOnEndpoint"
-        #}
-           
-        #xSqlNewAGDatabase SQLAGDatabases
-        #{
-        #    SqlAlwaysOnAvailabilityGroupName = $SqlAlwaysOnAvailabilityGroupName
-        #    DatabaseNames = $DatabaseNames
-        #    PrimaryReplica = $PrimaryReplica
-        #    SecondaryReplica = $SecondaryReplica
-        #    SqlAdministratorCredential = $SQLCreds
-	    #    DependsOn = "[xSqlAvailabilityGroup]SqlAG"
-        #}
-		#
-        #xSqlAvailabilityGroupListener SqlAGListener
-        #{
-        #    Name = $SqlAlwaysOnAvailabilityGroupListenerName
-        #    AvailabilityGroupName = $SqlAlwaysOnAvailabilityGroupName
-        #    DomainNameFqdn = $LBFQName
-        #    ListenerPortNumber = $SqlAlwaysOnAvailabilityGroupListenerPort
-        #    ListenerIPAddress = $LBAddress
-        #    ProbePortNumber = 59999
-        #    InstanceName = $env:COMPUTERNAME
-        #    DomainCredential = $DomainCreds
-        #    SqlAdministratorCredential = $Admincreds
-        #    DependsOn = "[xSqlNewAGDatabase]SQLAGDatabases"
-        #}
-		#
-		#xPendingReboot RebootAfterPromotion {
-        #    Name = "Reboot after SQL always on preperation"
-        #    DependsOn = "[xSqlAvailabilityGroupListener]SqlAGListener"
-        #}
+        xSqlAvailabilityGroup SqlAG
+        {
+            Name = $SqlAlwaysOnAvailabilityGroupName
+            ClusterName = $ClusterName
+            InstanceName = $env:COMPUTERNAME
+            PortNumber = 5022
+            DomainCredential =$DomainCreds
+            SqlAdministratorCredential = $SQLCreds
+	        DependsOn="[xSqlEndpoint]SqlSecondaryAlwaysOnEndpoint"
+        }
+          
+        xSqlNewAGDatabase SQLAGDatabases
+        {
+            SqlAlwaysOnAvailabilityGroupName = $SqlAlwaysOnAvailabilityGroupName
+            DatabaseNames = $DatabaseNames
+            PrimaryReplica = $PrimaryReplica
+            SecondaryReplica = $SecondaryReplica
+            SqlAdministratorCredential = $SQLCreds
+	        DependsOn = "[xSqlAvailabilityGroup]SqlAG"
+        }
+		
+        xSqlAvailabilityGroupListener SqlAGListener
+        {
+            Name = $SqlAlwaysOnAvailabilityGroupListenerName
+            AvailabilityGroupName = $SqlAlwaysOnAvailabilityGroupName
+            DomainNameFqdn = $LBFQName
+            ListenerPortNumber = $SqlAlwaysOnAvailabilityGroupListenerPort
+            ListenerIPAddress = $LBAddress
+            ProbePortNumber = 59999
+            InstanceName = $env:COMPUTERNAME
+            DomainCredential = $DomainCreds
+            SqlAdministratorCredential = $Admincreds
+            DependsOn = "[xSqlNewAGDatabase]SQLAGDatabases"
+        }
+		
+		xPendingReboot RebootAfterPromotion {
+            Name = "Reboot after SQL always on preperation"
+            DependsOn = "[xSqlAvailabilityGroupListener]SqlAGListener"
+        }
     }
 
 }
